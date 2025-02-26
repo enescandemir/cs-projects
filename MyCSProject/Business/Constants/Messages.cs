@@ -8,9 +8,12 @@ namespace Business.Constants // core katmanında olmamasının sebebi sadece her
 {
     public static class Messages // newlenemez
     {
-        public static string ProductAdded = "Ürün Eklendi";
-        public static string ProductNameInvalid = "Ürün İsmi Geçersiz";
-        public static string MaintenanceTime = "Bakım Zamanı";
-        public static string ProductsListed = "Ürünler Başarıyla Listelendi";
+        public static string ProductAdded = "Ürün eklendi.";
+        public static string ProductNameInvalid = "Ürün ismi geçersiz.";
+        public static string MaintenanceTime = "Bakım zamanı.";
+        public static string ProductsListed = "Ürünler başarıyla listelendi.";
+        public static string ProductCountOfCategoryError = "Bir kategoride en fazla 10 ürün olabilir.";
+        internal static string ProductNameAlreadyExists = "Eklemeye çalışılan ürünün adı zaten mevcut.";
+        internal static string CategoryLimitExceeded = "Kategori limiti aşıldığı için yeni ürün eklenemiyor.";
     }
 }

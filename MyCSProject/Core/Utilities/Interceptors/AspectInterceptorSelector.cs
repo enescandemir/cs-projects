@@ -10,13 +10,13 @@ namespace Core.Utilities.Interceptors
         {
             public IInterceptor[] SelectInterceptors(Type type, MethodInfo method, IInterceptor[] interceptors)
             {
-                var classAttributes = type.GetCustomAttributes<MethodInterceptionBaseAttribute>
+                var classAttributes = type.GetCustomAttributes<MethodInterceptionBaseAttribute>  // Sınıfa eklenmiş attribute'leri al
                     (true).ToList();
-                var methodAttributes = type.GetMethod(method.Name)
+                var methodAttributes = type.GetMethod(method.Name) // Metoda eklenmiş attribute'leri al
                     .GetCustomAttributes<MethodInterceptionBaseAttribute>(true);
-                classAttributes.AddRange(methodAttributes);
+                classAttributes.AddRange(methodAttributes); // Metodun aspect'lerini sınıfın aspect'lerine ekle
 
-                return classAttributes.OrderBy(x => x.Priority).ToArray();
+                return classAttributes.OrderBy(x => x.Priority).ToArray(); // Aspect'leri öncelik sırasına göre sırala ve döndür
             }
         }
     }
