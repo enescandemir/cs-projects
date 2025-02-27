@@ -15,5 +15,6 @@ namespace Business.Constants // core katmanında olmamasının sebebi sadece her
         public static string ProductCountOfCategoryError = "Bir kategoride en fazla 10 ürün olabilir.";
         internal static string ProductNameAlreadyExists = "Eklemeye çalışılan ürünün adı zaten mevcut.";
         internal static string CategoryLimitExceeded = "Kategori limiti aşıldığı için yeni ürün eklenemiyor.";
+        internal static string? AuthorizationDenied = "Yetkiniz yok.";
     }
 }

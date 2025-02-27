@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace Core.Utilities.Security.Hashing
             {
                 passwordSalt = hmac.Key;
                 passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password)); //password'un byte değerlerini bulup onu hashliyor.
-                                                                                   // string üzerinde değil byte üzerinde çalışıyor
+                                                                                 // string üzerinde değil byte üzerinde çalışıyor
             }
 
         } 
