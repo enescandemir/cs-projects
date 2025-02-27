@@ -78,7 +78,6 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductAdded);
         }
 
-        [ValidationAspect(typeof(ValidationAspect))]
         public IResult Update(Product product)
         {
             throw new NotImplementedException();
