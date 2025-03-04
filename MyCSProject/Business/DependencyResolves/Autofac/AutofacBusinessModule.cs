@@ -22,9 +22,6 @@ namespace Business.DependencyResolves.Autofac
             builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance(); // program.cs alanında kullanılan singleton ile eşdeğer
             builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance(); // Reflection = Program çalıştığında bu classlar üzerinden oluşturuluyorlar.
 
-            builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
-            builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
-
             builder.RegisterType<UserManager>().As<IUserService>();
             builder.RegisterType<EfUserDal>().As<IUserDal>();
 
