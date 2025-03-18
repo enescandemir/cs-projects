@@ -1,5 +1,6 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -65,9 +66,30 @@ namespace WinFormsUI
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
+            if (dgwCustomers.CurrentRow == null)
+            {
+                MessageBox.Show("Lütfen silmek için bir müşteri seçin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            Entities.Concrete.Customer selectedCustomer = (Entities.Concrete.Customer)dgwCustomers.CurrentRow.DataBoundItem;
 
+            DialogResult dialogResult = MessageBox.Show(
+                $"{selectedCustomer.Name} adlı müşteriyi silmek istediğinize emin misiniz?",
+                "Silme Onayı",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                customerManager.Delete(selectedCustomer);
+                MessageBox.Show("Müşteri başarıyla silindi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dgwCustomers.DataSource = customerManager.GetAll();
+            }
         }
 
+        private void dgwCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
+        }
     }
 }

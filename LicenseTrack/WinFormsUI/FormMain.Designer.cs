@@ -28,32 +28,41 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            buttonCustomer = new Button();
+            buttonLicense = new Button();
             SuspendLayout();
             // 
-            // button1
+            // buttonCustomer
             // 
-            button1.Location = new Point(53, 42);
-            button1.Name = "button1";
-            button1.Size = new Size(106, 40);
-            button1.TabIndex = 0;
-            button1.Text = "Customer";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            buttonCustomer.Location = new Point(42, 35);
+            buttonCustomer.Name = "buttonCustomer";
+            buttonCustomer.Size = new Size(94, 29);
+            buttonCustomer.TabIndex = 0;
+            buttonCustomer.Text = "Customer";
+            buttonCustomer.UseVisualStyleBackColor = true;
+            buttonCustomer.Click += buttonCustomer_Click;
+            // 
+            // buttonLicense
+            // 
+            buttonLicense.Location = new Point(42, 82);
+            buttonLicense.Name = "buttonLicense";
+            buttonLicense.Size = new Size(94, 29);
+            buttonLicense.TabIndex = 1;
+            buttonLicense.Text = "License";
+            buttonLicense.UseVisualStyleBackColor = true;
+            buttonLicense.Click += buttonLicense_Click;
             // 
             // FormMain
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(button1);
+            ClientSize = new Size(686, 359);
+            Controls.Add(buttonLicense);
+            Controls.Add(buttonCustomer);
             Name = "FormMain";
-            Text = "FormMain";
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Button button1;
+        private Button buttonCustomer;
+        private Button buttonLicense;
     }
 }

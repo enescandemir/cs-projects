@@ -1,3 +1,5 @@
+using WinFormsUI.License;
+
 namespace WinFormsUI
 {
     public partial class FormMain : Form
@@ -6,11 +8,16 @@ namespace WinFormsUI
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonCustomer_Click(object sender, EventArgs e)
         {
             FormCustomer formCustomer = new FormCustomer();
             formCustomer.Show();
+        }
+
+        private void buttonLicense_Click(object sender, EventArgs e)
+        {
+            FormLicense formLicense = new FormLicense();
+            formLicense.Show();
         }
     }
 }

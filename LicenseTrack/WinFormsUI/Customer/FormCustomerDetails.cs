@@ -36,16 +36,21 @@ namespace WinFormsUI.Customer
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtName.Text))
+            {
+                MessageBox.Show("Lütfen müşteri adı girin.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             Customer.Name = txtName.Text;
             Customer.DBName = txtDBName.Text;
             Customer.Address = txtAddress.Text;
             Customer.Port = int.Parse(txtPort.Text);
 
-            if (Customer.CustomerID == 0) 
+            if (Customer.CustomerID == 0)
             {
                 customerManager.Add(Customer);
             }
-            else 
+            else
             {
                 customerManager.Update(Customer);
             }
@@ -54,6 +59,7 @@ namespace WinFormsUI.Customer
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
