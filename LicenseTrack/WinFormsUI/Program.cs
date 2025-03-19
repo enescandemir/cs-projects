@@ -1,6 +1,6 @@
 namespace WinFormsUI
 {
-    internal static class Program
+    internal static class ProgramEntry
     {
         /// <summary>
         ///  The main entry point for the application.
