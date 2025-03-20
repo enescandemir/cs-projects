@@ -86,10 +86,5 @@ namespace WinFormsUI
                 dgwCustomers.DataSource = customerManager.GetAll();
             }
         }
-
-        private void dgwCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }

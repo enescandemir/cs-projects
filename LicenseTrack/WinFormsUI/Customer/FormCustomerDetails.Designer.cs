@@ -136,7 +136,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(375, 395);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);
             Controls.Add(txtPort);

@@ -37,7 +37,7 @@
             // 
             // buttonAdd
             // 
-            buttonAdd.Location = new Point(34, 63);
+            buttonAdd.Location = new Point(25, 63);
             buttonAdd.Name = "buttonAdd";
             buttonAdd.Size = new Size(110, 41);
             buttonAdd.TabIndex = 2;
@@ -47,7 +47,7 @@
             // 
             // buttonUpdate
             // 
-            buttonUpdate.Location = new Point(197, 63);
+            buttonUpdate.Location = new Point(323, 63);
             buttonUpdate.Name = "buttonUpdate";
             buttonUpdate.Size = new Size(110, 41);
             buttonUpdate.TabIndex = 3;
@@ -57,7 +57,7 @@
             // 
             // buttonDelete
             // 
-            buttonDelete.Location = new Point(356, 63);
+            buttonDelete.Location = new Point(679, 63);
             buttonDelete.Name = "buttonDelete";
             buttonDelete.Size = new Size(110, 41);
             buttonDelete.TabIndex = 4;
@@ -68,17 +68,17 @@
             // dgwLicense
             // 
             dgwLicense.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgwLicense.Location = new Point(24, 139);
+            dgwLicense.Location = new Point(12, 139);
             dgwLicense.Name = "dgwLicense";
             dgwLicense.RowHeadersWidth = 51;
-            dgwLicense.Size = new Size(754, 299);
+            dgwLicense.Size = new Size(799, 299);
             dgwLicense.TabIndex = 5;
             // 
             // FormLicense
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(826, 450);
             Controls.Add(dgwLicense);
             Controls.Add(buttonDelete);
             Controls.Add(buttonUpdate);

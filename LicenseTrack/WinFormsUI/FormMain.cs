@@ -1,7 +1,8 @@
 using MaterialSkin;
 using MaterialSkin.Controls;
 using WinFormsUI.License;
-using WinFormsUI.Program;
+using WinFormsUI.ProgramFrm;
+using WinFormsUI.ProgramLicense;
 
 namespace WinFormsUI
 {
@@ -35,8 +36,14 @@ namespace WinFormsUI
 
         private void buttonProgram_Click(object sender, EventArgs e)
         {
-            WinFormsUI.Program.FormProgram formProgram = new WinFormsUI.Program.FormProgram();
+            FormProgram formProgram = new FormProgram();
             formProgram.Show();
+        }
+
+        private void buttonProgramLicense_Click(object sender, EventArgs e)
+        {
+            FormProgramLicense formProgramLicense = new FormProgramLicense();
+            formProgramLicense.Show();
         }
     }
 }
