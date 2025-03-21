@@ -3,6 +3,8 @@ using MaterialSkin.Controls;
 using WinFormsUI.License;
 using WinFormsUI.ProgramFrm;
 using WinFormsUI.ProgramLicense;
+using WinFormsUI.UpdateTable;
+using WinFormsUI.Version;
 
 namespace WinFormsUI
 {
@@ -44,6 +46,18 @@ namespace WinFormsUI
         {
             FormProgramLicense formProgramLicense = new FormProgramLicense();
             formProgramLicense.Show();
+        }
+
+        private void buttonUpdateTable_Click(object sender, EventArgs e)
+        {
+            FormUpdateTable formUpdateTable = new FormUpdateTable();
+            formUpdateTable.Show();
+        }
+
+        private void buttonVersion_Click(object sender, EventArgs e)
+        {
+            FormVersion formVersion = new FormVersion();
+            formVersion.Show();
         }
     }
 }

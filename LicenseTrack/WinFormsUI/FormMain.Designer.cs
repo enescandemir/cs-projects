@@ -30,6 +30,8 @@ namespace WinFormsUI
             buttonLicense = new MaterialButton();
             buttonProgram = new MaterialButton();
             buttonProgramLicense = new MaterialButton();
+            buttonUpdateTable = new MaterialButton();
+            buttonVersion = new MaterialButton();
             SuspendLayout();
             // 
             // buttonCustomer
@@ -39,7 +41,7 @@ namespace WinFormsUI
             buttonCustomer.Depth = 0;
             buttonCustomer.HighEmphasis = true;
             buttonCustomer.Icon = null;
-            buttonCustomer.Location = new Point(50, 111);
+            buttonCustomer.Location = new Point(76, 136);
             buttonCustomer.Margin = new Padding(4, 6, 4, 6);
             buttonCustomer.MouseState = MouseState.HOVER;
             buttonCustomer.Name = "buttonCustomer";
@@ -58,7 +60,7 @@ namespace WinFormsUI
             buttonLicense.Depth = 0;
             buttonLicense.HighEmphasis = true;
             buttonLicense.Icon = null;
-            buttonLicense.Location = new Point(50, 203);
+            buttonLicense.Location = new Point(376, 136);
             buttonLicense.Margin = new Padding(4, 6, 4, 6);
             buttonLicense.MouseState = MouseState.HOVER;
             buttonLicense.Name = "buttonLicense";
@@ -77,7 +79,7 @@ namespace WinFormsUI
             buttonProgram.Depth = 0;
             buttonProgram.HighEmphasis = true;
             buttonProgram.Icon = null;
-            buttonProgram.Location = new Point(50, 296);
+            buttonProgram.Location = new Point(76, 203);
             buttonProgram.Margin = new Padding(4, 6, 4, 6);
             buttonProgram.MouseState = MouseState.HOVER;
             buttonProgram.Name = "buttonProgram";
@@ -97,12 +99,12 @@ namespace WinFormsUI
             buttonProgramLicense.Depth = 0;
             buttonProgramLicense.HighEmphasis = true;
             buttonProgramLicense.Icon = null;
-            buttonProgramLicense.Location = new Point(362, 111);
+            buttonProgramLicense.Location = new Point(336, 203);
             buttonProgramLicense.Margin = new Padding(4, 6, 4, 6);
             buttonProgramLicense.MouseState = MouseState.HOVER;
             buttonProgramLicense.Name = "buttonProgramLicense";
             buttonProgramLicense.NoAccentTextColor = Color.Empty;
-            buttonProgramLicense.Size = new Size(150, 36);
+            buttonProgramLicense.Size = new Size(154, 36);
             buttonProgramLicense.TabIndex = 3;
             buttonProgramLicense.Text = "Program License";
             buttonProgramLicense.Type = MaterialButton.MaterialButtonType.Contained;
@@ -110,9 +112,49 @@ namespace WinFormsUI
             buttonProgramLicense.UseVisualStyleBackColor = true;
             buttonProgramLicense.Click += buttonProgramLicense_Click;
             // 
+            // buttonUpdateTable
+            // 
+            buttonUpdateTable.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonUpdateTable.Density = MaterialButton.MaterialButtonDensity.Default;
+            buttonUpdateTable.Depth = 0;
+            buttonUpdateTable.HighEmphasis = true;
+            buttonUpdateTable.Icon = null;
+            buttonUpdateTable.Location = new Point(378, 279);
+            buttonUpdateTable.Margin = new Padding(4, 6, 4, 6);
+            buttonUpdateTable.MouseState = MouseState.HOVER;
+            buttonUpdateTable.Name = "buttonUpdateTable";
+            buttonUpdateTable.NoAccentTextColor = Color.Empty;
+            buttonUpdateTable.Size = new Size(77, 36);
+            buttonUpdateTable.TabIndex = 4;
+            buttonUpdateTable.Text = "Update";
+            buttonUpdateTable.Type = MaterialButton.MaterialButtonType.Contained;
+            buttonUpdateTable.UseAccentColor = false;
+            buttonUpdateTable.Click += buttonUpdateTable_Click;
+            // 
+            // buttonVersion
+            // 
+            buttonVersion.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonVersion.Density = MaterialButton.MaterialButtonDensity.Default;
+            buttonVersion.Depth = 0;
+            buttonVersion.HighEmphasis = true;
+            buttonVersion.Icon = null;
+            buttonVersion.Location = new Point(76, 279);
+            buttonVersion.Margin = new Padding(4, 6, 4, 6);
+            buttonVersion.MouseState = MouseState.HOVER;
+            buttonVersion.Name = "buttonVersion";
+            buttonVersion.NoAccentTextColor = Color.Empty;
+            buttonVersion.Size = new Size(82, 36);
+            buttonVersion.TabIndex = 5;
+            buttonVersion.Text = "Version";
+            buttonVersion.Type = MaterialButton.MaterialButtonType.Contained;
+            buttonVersion.UseAccentColor = false;
+            buttonVersion.Click += buttonVersion_Click;
+            // 
             // FormMain
             // 
             ClientSize = new Size(600, 400);
+            Controls.Add(buttonVersion);
+            Controls.Add(buttonUpdateTable);
             Controls.Add(buttonProgramLicense);
             Controls.Add(buttonProgram);
             Controls.Add(buttonCustomer);
@@ -128,5 +170,7 @@ namespace WinFormsUI
 
         private MaterialButton buttonProgram;
         private MaterialButton buttonProgramLicense;
+        private MaterialButton buttonUpdateTable;
+        private MaterialButton buttonVersion;
     }
 }

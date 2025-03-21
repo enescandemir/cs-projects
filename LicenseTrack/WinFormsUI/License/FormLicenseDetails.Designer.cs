@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            labelCustomerID = new Label();
+            labelCustomer = new Label();
             labelType = new Label();
             labelStartDate = new Label();
             labelEndDate = new Label();
             labelDescription = new Label();
-            cmbCustomerID = new ComboBox();
+            cmbCustomer = new ComboBox();
             cmbType = new ComboBox();
             dtpStartDate = new DateTimePicker();
             dtpEndDate = new DateTimePicker();
@@ -42,14 +42,14 @@
             btnCancel = new Button();
             SuspendLayout();
             // 
-            // labelCustomerID
+            // labelCustomer
             // 
-            labelCustomerID.AutoSize = true;
-            labelCustomerID.Location = new Point(47, 41);
-            labelCustomerID.Name = "labelCustomerID";
-            labelCustomerID.Size = new Size(87, 20);
-            labelCustomerID.TabIndex = 0;
-            labelCustomerID.Text = "CustomerID";
+            labelCustomer.AutoSize = true;
+            labelCustomer.Location = new Point(47, 41);
+            labelCustomer.Name = "labelCustomer";
+            labelCustomer.Size = new Size(72, 20);
+            labelCustomer.TabIndex = 0;
+            labelCustomer.Text = "Customer";
             // 
             // labelType
             // 
@@ -87,14 +87,14 @@
             labelDescription.TabIndex = 4;
             labelDescription.Text = "Description";
             // 
-            // cmbCustomerID
+            // cmbCustomer
             // 
-            cmbCustomerID.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbCustomerID.FormattingEnabled = true;
-            cmbCustomerID.Location = new Point(181, 38);
-            cmbCustomerID.Name = "cmbCustomerID";
-            cmbCustomerID.Size = new Size(151, 28);
-            cmbCustomerID.TabIndex = 5;
+            cmbCustomer.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbCustomer.FormattingEnabled = true;
+            cmbCustomer.Location = new Point(181, 38);
+            cmbCustomer.Name = "cmbCustomer";
+            cmbCustomer.Size = new Size(151, 28);
+            cmbCustomer.TabIndex = 5;
             // 
             // cmbType
             // 
@@ -158,12 +158,12 @@
             Controls.Add(dtpEndDate);
             Controls.Add(dtpStartDate);
             Controls.Add(cmbType);
-            Controls.Add(cmbCustomerID);
+            Controls.Add(cmbCustomer);
             Controls.Add(labelDescription);
             Controls.Add(labelEndDate);
             Controls.Add(labelStartDate);
             Controls.Add(labelType);
-            Controls.Add(labelCustomerID);
+            Controls.Add(labelCustomer);
             Name = "FormLicenseDetails";
             Text = "FormLicenseDetails";
             ResumeLayout(false);
@@ -172,12 +172,12 @@
 
         #endregion
 
-        private Label labelCustomerID;
+        private Label labelCustomer;
         private Label labelType;
         private Label labelStartDate;
         private Label labelEndDate;
         private Label labelDescription;
-        private ComboBox cmbCustomerID;
+        private ComboBox cmbCustomer;
         private ComboBox cmbType;
         private DateTimePicker dtpStartDate;
         private DateTimePicker dtpEndDate;

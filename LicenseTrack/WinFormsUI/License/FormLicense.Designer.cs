@@ -57,7 +57,7 @@
             // 
             // buttonDelete
             // 
-            buttonDelete.Location = new Point(679, 63);
+            buttonDelete.Location = new Point(685, 63);
             buttonDelete.Name = "buttonDelete";
             buttonDelete.Size = new Size(110, 41);
             buttonDelete.TabIndex = 4;
@@ -67,6 +67,7 @@
             // 
             // dgwLicense
             // 
+            dgwLicense.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgwLicense.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgwLicense.Location = new Point(12, 139);
             dgwLicense.Name = "dgwLicense";

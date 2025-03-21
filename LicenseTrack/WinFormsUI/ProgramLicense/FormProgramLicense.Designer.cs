@@ -67,6 +67,7 @@
             // 
             // dgwProgramLicense
             // 
+            dgwProgramLicense.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgwProgramLicense.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgwProgramLicense.Location = new Point(24, 139);
             dgwProgramLicense.Name = "dgwProgramLicense";

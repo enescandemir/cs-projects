@@ -1,6 +1,6 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete;
-using Entities.Concrete;
+using Entities.Concrete.Enums;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -21,7 +21,7 @@ namespace WinFormsUI.License
             if (license != null)
             {
                 License = license;
-                cmbCustomerID.SelectedValue = (int)License.CustomerID;
+                cmbCustomer.SelectedValue = (int)License.CustomerID;
                 cmbType.SelectedValue = (int)license.Type;
                 dtpStartDate.Value = license.StartDate;
                 dtpEndDate.Value = license.EndDate;
@@ -47,21 +47,21 @@ namespace WinFormsUI.License
         private void LoadCustomers()
         {
             var customers = new CustomerManager(new EfCustomerDal()).GetAll(); 
-            cmbCustomerID.DataSource = customers;
-            cmbCustomerID.DisplayMember = "Name"; 
-            cmbCustomerID.ValueMember = "CustomerID"; 
-            cmbCustomerID.SelectedIndex = -1;
+            cmbCustomer.DataSource = customers;
+            cmbCustomer.DisplayMember = "Name"; 
+            cmbCustomer.ValueMember = "CustomerID"; 
+            cmbCustomer.SelectedIndex = -1;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (cmbCustomerID.SelectedItem == null)
+            if (cmbCustomer.SelectedItem == null)
             {
                 MessageBox.Show("Lütfen bir müşteri seçin!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            License.CustomerID = (int)cmbCustomerID.SelectedValue;
+            License.CustomerID = (int)cmbCustomer.SelectedValue;
             License.Type = (int)cmbType.SelectedValue;
             License.StartDate = dtpStartDate.Value;
             License.EndDate = dtpEndDate.Value;
@@ -76,7 +76,7 @@ namespace WinFormsUI.License
                 licenseManager.Update(License);
             }
 
-            MessageBox.Show("Lisans işlemi başarılı!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Lisans ekleme işlemi başarılı!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

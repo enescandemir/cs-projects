@@ -1,8 +1,6 @@
-﻿
-
-namespace WinFormsUI
+﻿namespace WinFormsUI.UpdateTable
 {
-    partial class FormCustomer
+    partial class FormUpdateTable
     {
         /// <summary>
         /// Required designer variable.
@@ -30,73 +28,73 @@ namespace WinFormsUI
         /// </summary>
         private void InitializeComponent()
         {
-            dgwCustomers = new DataGridView();
             buttonAdd = new Button();
-            buttonDelete = new Button();
             buttonUpdate = new Button();
-            ((System.ComponentModel.ISupportInitialize)dgwCustomers).BeginInit();
+            buttonDelete = new Button();
+            dgwUpdateTable = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dgwUpdateTable).BeginInit();
             SuspendLayout();
-            // 
-            // dgwCustomers
-            // 
-            dgwCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgwCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgwCustomers.Location = new Point(12, 125);
-            dgwCustomers.Name = "dgwCustomers";
-            dgwCustomers.RowHeadersWidth = 51;
-            dgwCustomers.Size = new Size(686, 313);
-            dgwCustomers.TabIndex = 0;
             // 
             // buttonAdd
             // 
-            buttonAdd.Location = new Point(65, 45);
+            buttonAdd.Location = new Point(52, 57);
             buttonAdd.Name = "buttonAdd";
             buttonAdd.Size = new Size(110, 41);
-            buttonAdd.TabIndex = 1;
+            buttonAdd.TabIndex = 5;
             buttonAdd.Text = "Add";
             buttonAdd.UseVisualStyleBackColor = true;
             buttonAdd.Click += buttonAdd_Click;
             // 
-            // buttonDelete
-            // 
-            buttonDelete.Location = new Point(526, 45);
-            buttonDelete.Name = "buttonDelete";
-            buttonDelete.Size = new Size(110, 41);
-            buttonDelete.TabIndex = 2;
-            buttonDelete.Text = "Delete";
-            buttonDelete.UseVisualStyleBackColor = true;
-            buttonDelete.Click += buttonDelete_Click;
-            // 
             // buttonUpdate
             // 
-            buttonUpdate.Location = new Point(282, 45);
+            buttonUpdate.Location = new Point(262, 57);
             buttonUpdate.Name = "buttonUpdate";
             buttonUpdate.Size = new Size(110, 41);
-            buttonUpdate.TabIndex = 3;
+            buttonUpdate.TabIndex = 6;
             buttonUpdate.Text = "Update";
             buttonUpdate.UseVisualStyleBackColor = true;
             buttonUpdate.Click += buttonUpdate_Click;
             // 
-            // FormCustomer
+            // buttonDelete
+            // 
+            buttonDelete.Location = new Point(472, 57);
+            buttonDelete.Name = "buttonDelete";
+            buttonDelete.Size = new Size(110, 41);
+            buttonDelete.TabIndex = 7;
+            buttonDelete.Text = "Delete";
+            buttonDelete.UseVisualStyleBackColor = true;
+            buttonDelete.Click += buttonDelete_Click;
+            // 
+            // dgwUpdateTable
+            // 
+            dgwUpdateTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgwUpdateTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgwUpdateTable.Location = new Point(28, 139);
+            dgwUpdateTable.Name = "dgwUpdateTable";
+            dgwUpdateTable.RowHeadersWidth = 51;
+            dgwUpdateTable.Size = new Size(634, 299);
+            dgwUpdateTable.TabIndex = 8;
+            // 
+            // FormUpdateTable
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(728, 450);
-            Controls.Add(buttonUpdate);
+            ClientSize = new Size(702, 450);
+            Controls.Add(dgwUpdateTable);
             Controls.Add(buttonDelete);
+            Controls.Add(buttonUpdate);
             Controls.Add(buttonAdd);
-            Controls.Add(dgwCustomers);
-            Name = "FormCustomer";
-            Text = "FormCustomer";
-            ((System.ComponentModel.ISupportInitialize)dgwCustomers).EndInit();
+            Name = "FormUpdateTable";
+            Text = "FormUpdateTable";
+            ((System.ComponentModel.ISupportInitialize)dgwUpdateTable).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView dgwCustomers;
         private Button buttonAdd;
-        private Button buttonDelete;
         private Button buttonUpdate;
+        private Button buttonDelete;
+        private DataGridView dgwUpdateTable;
     }
 }

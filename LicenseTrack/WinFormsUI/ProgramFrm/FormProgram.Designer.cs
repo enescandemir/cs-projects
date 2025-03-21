@@ -67,6 +67,7 @@
             // 
             // dgwProgram
             // 
+            dgwProgram.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgwProgram.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgwProgram.Location = new Point(12, 139);
             dgwProgram.Name = "dgwProgram";
@@ -78,7 +79,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(581, 454);
+            ClientSize = new Size(577, 454);
             Controls.Add(dgwProgram);
             Controls.Add(buttonDelete);
             Controls.Add(buttonUpdate);
