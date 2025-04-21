@@ -1,13 +1,14 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete;
 using Entities.Concrete;
+using MaterialSkin.Controls;
 using System;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace WinFormsUI.UpdateTable
 {
-    public partial class FormUpdateTableDetails : Form
+    public partial class FormUpdateTableDetails : MaterialForm
     {
         public Entities.Concrete.UpdateTable Update { get; set; }
         private UpdateTableManager updateManager = new UpdateTableManager(new EfUpdateTableDal());

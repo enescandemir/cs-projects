@@ -1,13 +1,14 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete;
 using Entities.Concrete.Enums;
+using MaterialSkin.Controls;
 using System;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace WinFormsUI.License
 {
-    public partial class FormLicenseDetails : Form
+    public partial class FormLicenseDetails : MaterialForm
     {
         public Entities.Concrete.License License { get; set; }
         private LicenseManager licenseManager = new LicenseManager(new EfLicenseDal());

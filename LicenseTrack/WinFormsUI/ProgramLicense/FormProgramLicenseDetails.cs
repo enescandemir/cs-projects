@@ -1,6 +1,7 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete;
 using Entities.Concrete;
+using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ using System.Windows.Forms;
 
 namespace WinFormsUI.ProgramLicense
 {
-    public partial class FormProgramLicenseDetails : Form
+    public partial class FormProgramLicenseDetails : MaterialForm
     {
         public Entities.Concrete.ProgramLicense ProgramLicense { get; set; }
         private ProgramLicenseManager programLicenseManager = new ProgramLicenseManager(new EfProgramLicenseDal());

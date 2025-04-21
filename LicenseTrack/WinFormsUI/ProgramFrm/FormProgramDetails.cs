@@ -1,5 +1,6 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete;
+using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ using System.Xml.Linq;
 
 namespace WinFormsUI.ProgramFrm
 {
-    public partial class FormProgramDetails : Form
+    public partial class FormProgramDetails : MaterialForm
     {
         public Entities.Concrete.Program Program { get; set; }
         private ProgramManager programManager = new ProgramManager(new EfProgramDal());

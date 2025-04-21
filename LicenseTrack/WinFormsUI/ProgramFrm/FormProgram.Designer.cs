@@ -1,16 +1,14 @@
-﻿namespace WinFormsUI.ProgramFrm
+﻿using MaterialSkin;
+using MaterialSkin.Controls;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace WinFormsUI.ProgramFrm
 {
     partial class FormProgram
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,57 +20,104 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            buttonAdd = new Button();
-            buttonUpdate = new Button();
-            buttonDelete = new Button();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            buttonAdd = new MaterialButton();
+            buttonUpdate = new MaterialButton();
+            buttonDelete = new MaterialButton();
             dgwProgram = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)dgwProgram).BeginInit();
             SuspendLayout();
             // 
             // buttonAdd
             // 
-            buttonAdd.Location = new Point(49, 45);
+            buttonAdd.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonAdd.Density = MaterialButton.MaterialButtonDensity.Default;
+            buttonAdd.Depth = 0;
+            buttonAdd.HighEmphasis = true;
+            buttonAdd.Icon = null;
+            buttonAdd.Location = new Point(12, 84);
+            buttonAdd.Margin = new Padding(4, 6, 4, 6);
+            buttonAdd.MouseState = MouseState.HOVER;
             buttonAdd.Name = "buttonAdd";
-            buttonAdd.Size = new Size(110, 41);
+            buttonAdd.NoAccentTextColor = Color.Empty;
+            buttonAdd.Size = new Size(64, 36);
             buttonAdd.TabIndex = 3;
             buttonAdd.Text = "Add";
+            buttonAdd.Type = MaterialButton.MaterialButtonType.Contained;
+            buttonAdd.UseAccentColor = false;
             buttonAdd.UseVisualStyleBackColor = true;
             buttonAdd.Click += buttonAdd_Click;
             // 
             // buttonUpdate
             // 
-            buttonUpdate.Location = new Point(217, 45);
+            buttonUpdate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonUpdate.Density = MaterialButton.MaterialButtonDensity.Default;
+            buttonUpdate.Depth = 0;
+            buttonUpdate.HighEmphasis = true;
+            buttonUpdate.Icon = null;
+            buttonUpdate.Location = new Point(252, 84);
+            buttonUpdate.Margin = new Padding(4, 6, 4, 6);
+            buttonUpdate.MouseState = MouseState.HOVER;
             buttonUpdate.Name = "buttonUpdate";
-            buttonUpdate.Size = new Size(110, 41);
+            buttonUpdate.NoAccentTextColor = Color.Empty;
+            buttonUpdate.Size = new Size(77, 36);
             buttonUpdate.TabIndex = 4;
             buttonUpdate.Text = "Update";
+            buttonUpdate.Type = MaterialButton.MaterialButtonType.Contained;
+            buttonUpdate.UseAccentColor = false;
             buttonUpdate.UseVisualStyleBackColor = true;
             buttonUpdate.Click += buttonUpdate_Click;
             // 
             // buttonDelete
             // 
-            buttonDelete.Location = new Point(385, 45);
+            buttonDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonDelete.Density = MaterialButton.MaterialButtonDensity.Default;
+            buttonDelete.Depth = 0;
+            buttonDelete.HighEmphasis = true;
+            buttonDelete.Icon = null;
+            buttonDelete.Location = new Point(497, 84);
+            buttonDelete.Margin = new Padding(4, 6, 4, 6);
+            buttonDelete.MouseState = MouseState.HOVER;
             buttonDelete.Name = "buttonDelete";
-            buttonDelete.Size = new Size(110, 41);
+            buttonDelete.NoAccentTextColor = Color.Empty;
+            buttonDelete.Size = new Size(73, 36);
             buttonDelete.TabIndex = 5;
             buttonDelete.Text = "Delete";
+            buttonDelete.Type = MaterialButton.MaterialButtonType.Contained;
+            buttonDelete.UseAccentColor = false;
             buttonDelete.UseVisualStyleBackColor = true;
             buttonDelete.Click += buttonDelete_Click;
             // 
             // dgwProgram
             // 
             dgwProgram.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgwProgram.BackgroundColor = Color.FromArgb(245, 245, 245);
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(55, 71, 79);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgwProgram.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgwProgram.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgwProgram.Location = new Point(12, 139);
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(236, 239, 241);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(33, 33, 33);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(144, 202, 249);
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgwProgram.DefaultCellStyle = dataGridViewCellStyle2;
+            dgwProgram.EnableHeadersVisualStyles = false;
+            dgwProgram.GridColor = Color.FromArgb(176, 190, 197);
+            dgwProgram.Location = new Point(12, 129);
             dgwProgram.Name = "dgwProgram";
             dgwProgram.RowHeadersWidth = 51;
-            dgwProgram.Size = new Size(558, 299);
+            dgwProgram.Size = new Size(558, 309);
             dgwProgram.TabIndex = 6;
             // 
             // FormProgram
@@ -85,16 +130,17 @@
             Controls.Add(buttonUpdate);
             Controls.Add(buttonAdd);
             Name = "FormProgram";
-            Text = "FormProgram";
+            Text = "Program Management";
             ((System.ComponentModel.ISupportInitialize)dgwProgram).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private Button buttonAdd;
-        private Button buttonUpdate;
-        private Button buttonDelete;
+        private MaterialButton buttonAdd;
+        private MaterialButton buttonUpdate;
+        private MaterialButton buttonDelete;
         private DataGridView dgwProgram;
     }
 }

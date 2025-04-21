@@ -1,26 +1,24 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete;
+using MaterialSkin.Controls;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using WinFormsUI.ProgramFrm;
+using Core.Utilities.Session;
+using System.Security.Claims; 
 
 namespace WinFormsUI.ProgramLicense
 {
-    public partial class FormProgramLicense : Form
+    public partial class FormProgramLicense : MaterialForm
     {
         ProgramLicenseManager programLicenseManager = new ProgramLicenseManager(new EfProgramLicenseDal());
+
         public FormProgramLicense()
         {
             InitializeComponent();
             this.Load += FormProgramLicense_Load;
         }
+
         private void FormProgramLicense_Load(object sender, EventArgs e)
         {
             try
@@ -30,7 +28,7 @@ namespace WinFormsUI.ProgramLicense
 
                 if (programLicenses.Count == 0)
                 {
-                    MessageBox.Show("Veritabanında lisans bulunamadı.");
+                    MessageBox.Show("Veritabanında program lisansı bulunamadı.");
                 }
             }
             catch (Exception ex)
@@ -41,6 +39,12 @@ namespace WinFormsUI.ProgramLicense
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
+            if (!IsAdmin())
+            {
+                MessageBox.Show("Bu işlemi gerçekleştirmek için admin yetkisine sahip olmalısınız.", "Yetkisiz İşlem", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             FormProgramLicenseDetails form = new FormProgramLicenseDetails();
             if (form.ShowDialog() == DialogResult.OK)
             {
@@ -50,11 +54,18 @@ namespace WinFormsUI.ProgramLicense
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            if (dgwProgramLicense.CurrentRow == null)
+            if (!IsAdmin())
             {
-                MessageBox.Show("Lütfen güncellemek için bir program seçin.");
+                MessageBox.Show("Bu işlemi gerçekleştirmek için admin yetkisine sahip olmalısınız.", "Yetkisiz İşlem", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            if (dgwProgramLicense.CurrentRow == null)
+            {
+                MessageBox.Show("Lütfen güncellemek için bir program lisansı seçin.");
+                return;
+            }
+
             Entities.Concrete.ProgramLicense selectedProgramLicense = (Entities.Concrete.ProgramLicense)dgwProgramLicense.CurrentRow.DataBoundItem;
 
             FormProgramLicenseDetails form = new FormProgramLicenseDetails(selectedProgramLicense);
@@ -66,16 +77,22 @@ namespace WinFormsUI.ProgramLicense
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
+            if (!IsAdmin())
+            {
+                MessageBox.Show("Bu işlemi gerçekleştirmek için admin yetkisine sahip olmalısınız.", "Yetkisiz İşlem", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (dgwProgramLicense.CurrentRow == null)
             {
-                MessageBox.Show("Lütfen silmek için bir program seçin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Lütfen silmek için bir program lisansı seçin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             Entities.Concrete.ProgramLicense selectedProgramLicense = (Entities.Concrete.ProgramLicense)dgwProgramLicense.CurrentRow.DataBoundItem;
 
             DialogResult dialogResult = MessageBox.Show(
-                $"{selectedProgramLicense.ProgramID} numaralı programı silmek istediğinize emin misiniz?",
+                $"{selectedProgramLicense.ProgramID} numaralı program lisansını silmek istediğinize emin misiniz?",
                 "Silme Onayı",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
@@ -83,8 +100,33 @@ namespace WinFormsUI.ProgramLicense
             if (dialogResult == DialogResult.Yes)
             {
                 programLicenseManager.Delete(selectedProgramLicense);
-                MessageBox.Show("Program başarıyla silindi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Program lisansı başarıyla silindi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 dgwProgramLicense.DataSource = programLicenseManager.GetAll();
+            }
+        }
+
+        private bool IsAdmin()
+        {
+
+            if (string.IsNullOrEmpty(Session.JwtToken))
+            {
+                MessageBox.Show("Yetki doğrulama için bir token bulunamadı. Lütfen giriş yapın.", "Yetkisiz İşlem", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            try
+            {
+                var tokenHandler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
+                var jwtToken = tokenHandler.ReadJwtToken(Session.JwtToken); 
+                var claims = jwtToken.Claims;
+
+                string role = claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value; 
+                return role == "Admin"; 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Token doğrulama sırasında bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
     }

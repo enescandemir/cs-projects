@@ -1,16 +1,13 @@
-﻿namespace WinFormsUI.ProgramFrm
+﻿using MaterialSkin.Controls;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace WinFormsUI.ProgramFrm
 {
     partial class FormProgramDetails
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,74 +19,87 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            txtName = new TextBox();
-            labelName = new Label();
-            btnSave = new Button();
-            btnCancel = new Button();
+            txtName = new MaterialTextBox();
+            btnSave = new MaterialButton();
+            btnCancel = new MaterialButton();
             SuspendLayout();
             // 
             // txtName
             // 
-            txtName.Location = new Point(187, 49);
+            txtName.AnimateReadOnly = false;
+            txtName.BorderStyle = BorderStyle.None;
+            txtName.Depth = 0;
+            txtName.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtName.Hint = "Program Name";
+            txtName.LeadingIcon = null;
+            txtName.Location = new Point(29, 77);
+            txtName.MaxLength = 50;
+            txtName.MouseState = MaterialSkin.MouseState.OUT;
+            txtName.Multiline = false;
             txtName.Name = "txtName";
-            txtName.Size = new Size(135, 27);
-            txtName.TabIndex = 0;
-            // 
-            // labelName
-            // 
-            labelName.AutoSize = true;
-            labelName.Location = new Point(55, 52);
-            labelName.Name = "labelName";
-            labelName.Size = new Size(49, 20);
-            labelName.TabIndex = 1;
-            labelName.Text = "Name";
+            txtName.Size = new Size(300, 50);
+            txtName.TabIndex = 1;
+            txtName.Text = "";
+            txtName.TrailingIcon = null;
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(55, 150);
+            btnSave.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnSave.Density = MaterialButton.MaterialButtonDensity.Default;
+            btnSave.Depth = 0;
+            btnSave.HighEmphasis = true;
+            btnSave.Icon = null;
+            btnSave.Location = new Point(29, 146);
+            btnSave.Margin = new Padding(4, 6, 4, 6);
+            btnSave.MouseState = MaterialSkin.MouseState.HOVER;
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(94, 29);
-            btnSave.TabIndex = 12;
+            btnSave.NoAccentTextColor = Color.Empty;
+            btnSave.Size = new Size(64, 36);
+            btnSave.TabIndex = 2;
             btnSave.Text = "Save";
-            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Type = MaterialButton.MaterialButtonType.Contained;
+            btnSave.UseAccentColor = false;
             btnSave.Click += btnSave_Click;
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(228, 150);
+            btnCancel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCancel.Density = MaterialButton.MaterialButtonDensity.Default;
+            btnCancel.Depth = 0;
+            btnCancel.HighEmphasis = true;
+            btnCancel.Icon = null;
+            btnCancel.Location = new Point(252, 146);
+            btnCancel.Margin = new Padding(4, 6, 4, 6);
+            btnCancel.MouseState = MaterialSkin.MouseState.HOVER;
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(94, 29);
-            btnCancel.TabIndex = 13;
+            btnCancel.NoAccentTextColor = Color.Empty;
+            btnCancel.Size = new Size(77, 36);
+            btnCancel.TabIndex = 3;
             btnCancel.Text = "Cancel";
-            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Type = MaterialButton.MaterialButtonType.Contained;
+            btnCancel.UseAccentColor = false;
             btnCancel.Click += btnCancel_Click;
             // 
             // FormProgramDetails
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(405, 232);
-            Controls.Add(btnCancel);
-            Controls.Add(btnSave);
-            Controls.Add(labelName);
+            ClientSize = new Size(374, 198);
             Controls.Add(txtName);
+            Controls.Add(btnSave);
+            Controls.Add(btnCancel);
             Name = "FormProgramDetails";
-            Text = "FormProgramDetails";
+            Text = "Program Details";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TextBox txtName;
-        private Label labelName;
-        private Button btnSave;
-        private Button btnCancel;
+        private MaterialTextBox txtName;
+        private MaterialButton btnSave;
+        private MaterialButton btnCancel;
     }
 }

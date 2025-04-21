@@ -1,14 +1,16 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete;
 using Entities.Concrete;
+using MaterialSkin.Controls;
 using System;
-using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
-using WinFormsUI.ProgramFrm;
+using Core.Utilities.Session;
+using System.Security.Claims; 
 
 namespace WinFormsUI.ProgramFrm
 {
-    public partial class FormProgram : Form
+    public partial class FormProgram : MaterialForm
     {
         ProgramManager programManager = new ProgramManager(new EfProgramDal());
 
@@ -27,7 +29,7 @@ namespace WinFormsUI.ProgramFrm
 
                 if (programs.Count == 0)
                 {
-                    MessageBox.Show("Veritabanında lisans bulunamadı.");
+                    MessageBox.Show("Veritabanında program bulunamadı.");
                 }
             }
             catch (Exception ex)
@@ -38,6 +40,12 @@ namespace WinFormsUI.ProgramFrm
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
+            if (!IsAdmin())
+            {
+                MessageBox.Show("Bu işlemi gerçekleştirmek için admin yetkisine sahip olmalısınız.", "Yetkisiz İşlem", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             FormProgramDetails form = new FormProgramDetails();
             if (form.ShowDialog() == DialogResult.OK)
             {
@@ -47,6 +55,12 @@ namespace WinFormsUI.ProgramFrm
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
+            if (!IsAdmin())
+            {
+                MessageBox.Show("Bu işlemi gerçekleştirmek için admin yetkisine sahip olmalısınız.", "Yetkisiz İşlem", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (dgwProgram.CurrentRow == null)
             {
                 MessageBox.Show("Lütfen güncellemek için bir program seçin.");
@@ -64,6 +78,12 @@ namespace WinFormsUI.ProgramFrm
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
+            if (!IsAdmin())
+            {
+                MessageBox.Show("Bu işlemi gerçekleştirmek için admin yetkisine sahip olmalısınız.", "Yetkisiz İşlem", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (dgwProgram.CurrentRow == null)
             {
                 MessageBox.Show("Lütfen silmek için bir program seçin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -83,6 +103,30 @@ namespace WinFormsUI.ProgramFrm
                 programManager.Delete(selectedProgram);
                 MessageBox.Show("Program başarıyla silindi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 dgwProgram.DataSource = programManager.GetAll();
+            }
+        }
+
+        private bool IsAdmin()
+        {
+            if (string.IsNullOrEmpty(Session.JwtToken))
+            {
+                MessageBox.Show("Yetki doğrulama için bir token bulunamadı. Lütfen giriş yapın.", "Yetkisiz İşlem", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            try
+            {
+                var tokenHandler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
+                var jwtToken = tokenHandler.ReadJwtToken(Session.JwtToken); 
+                var claims = jwtToken.Claims;
+
+                string role = claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value; 
+                return role == "Admin";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Token doğrulama sırasında bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
     }

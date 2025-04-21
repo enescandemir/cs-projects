@@ -1,6 +1,7 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete;
 using Entities.Concrete;
+using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 
 namespace WinFormsUI.Customer
 {
-    public partial class FormCustomerDetails : Form
+    public partial class FormCustomerDetails : MaterialForm
     {
         public Entities.Concrete.Customer Customer { get; set; }
         private CustomerManager customerManager = new CustomerManager(new EfCustomerDal());

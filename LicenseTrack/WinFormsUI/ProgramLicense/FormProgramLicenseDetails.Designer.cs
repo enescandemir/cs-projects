@@ -1,16 +1,13 @@
-﻿namespace WinFormsUI.ProgramLicense
+﻿using MaterialSkin.Controls;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace WinFormsUI.ProgramLicense
 {
     partial class FormProgramLicenseDetails
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,98 +19,116 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            cmbProgramID = new ComboBox();
-            cmbLicenseID = new ComboBox();
-            labelProgram = new Label();
-            labelLicense = new Label();
-            btnSave = new Button();
-            btnCancel = new Button();
+            cmbProgramID = new MaterialComboBox();
+            cmbLicenseID = new MaterialComboBox();
+            btnSave = new MaterialButton();
+            btnCancel = new MaterialButton();
             SuspendLayout();
             // 
             // cmbProgramID
             // 
-            cmbProgramID.FormattingEnabled = true;
-            cmbProgramID.Location = new Point(200, 40);
+            cmbProgramID.AutoResize = false;
+            cmbProgramID.BackColor = Color.FromArgb(255, 255, 255);
+            cmbProgramID.Depth = 0;
+            cmbProgramID.DrawMode = DrawMode.OwnerDrawVariable;
+            cmbProgramID.DropDownHeight = 174;
+            cmbProgramID.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbProgramID.DropDownWidth = 121;
+            cmbProgramID.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            cmbProgramID.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            cmbProgramID.Hint = "Select Program";
+            cmbProgramID.IntegralHeight = false;
+            cmbProgramID.ItemHeight = 43;
+            cmbProgramID.Location = new Point(28, 82);
+            cmbProgramID.MaxDropDownItems = 4;
+            cmbProgramID.MouseState = MaterialSkin.MouseState.OUT;
             cmbProgramID.Name = "cmbProgramID";
-            cmbProgramID.Size = new Size(151, 28);
+            cmbProgramID.Size = new Size(257, 49);
+            cmbProgramID.StartIndex = 0;
             cmbProgramID.TabIndex = 0;
             // 
             // cmbLicenseID
             // 
-            cmbLicenseID.FormattingEnabled = true;
-            cmbLicenseID.Location = new Point(200, 125);
+            cmbLicenseID.AutoResize = false;
+            cmbLicenseID.BackColor = Color.FromArgb(255, 255, 255);
+            cmbLicenseID.Depth = 0;
+            cmbLicenseID.DrawMode = DrawMode.OwnerDrawVariable;
+            cmbLicenseID.DropDownHeight = 174;
+            cmbLicenseID.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbLicenseID.DropDownWidth = 121;
+            cmbLicenseID.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            cmbLicenseID.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            cmbLicenseID.Hint = "Select License";
+            cmbLicenseID.IntegralHeight = false;
+            cmbLicenseID.ItemHeight = 43;
+            cmbLicenseID.Location = new Point(28, 147);
+            cmbLicenseID.MaxDropDownItems = 4;
+            cmbLicenseID.MouseState = MaterialSkin.MouseState.OUT;
             cmbLicenseID.Name = "cmbLicenseID";
-            cmbLicenseID.Size = new Size(151, 28);
+            cmbLicenseID.Size = new Size(257, 49);
+            cmbLicenseID.StartIndex = 0;
             cmbLicenseID.TabIndex = 1;
-            // 
-            // labelProgram
-            // 
-            labelProgram.AutoSize = true;
-            labelProgram.Location = new Point(42, 43);
-            labelProgram.Name = "labelProgram";
-            labelProgram.Size = new Size(66, 20);
-            labelProgram.TabIndex = 2;
-            labelProgram.Text = "Program";
-            // 
-            // labelLicense
-            // 
-            labelLicense.AutoSize = true;
-            labelLicense.Location = new Point(42, 125);
-            labelLicense.Name = "labelLicense";
-            labelLicense.Size = new Size(57, 20);
-            labelLicense.TabIndex = 3;
-            labelLicense.Text = "License";
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(42, 351);
+            btnSave.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnSave.Density = MaterialButton.MaterialButtonDensity.Default;
+            btnSave.Depth = 0;
+            btnSave.HighEmphasis = true;
+            btnSave.Icon = null;
+            btnSave.Location = new Point(28, 225);
+            btnSave.Margin = new Padding(4, 6, 4, 6);
+            btnSave.MouseState = MaterialSkin.MouseState.HOVER;
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(94, 29);
+            btnSave.NoAccentTextColor = Color.Empty;
+            btnSave.Size = new Size(64, 36);
             btnSave.TabIndex = 13;
             btnSave.Text = "Save";
-            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Type = MaterialButton.MaterialButtonType.Contained;
+            btnSave.UseAccentColor = false;
             btnSave.Click += btnSave_Click;
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(257, 351);
+            btnCancel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCancel.Density = MaterialButton.MaterialButtonDensity.Default;
+            btnCancel.Depth = 0;
+            btnCancel.HighEmphasis = true;
+            btnCancel.Icon = null;
+            btnCancel.Location = new Point(208, 225);
+            btnCancel.Margin = new Padding(4, 6, 4, 6);
+            btnCancel.MouseState = MaterialSkin.MouseState.HOVER;
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(94, 29);
+            btnCancel.NoAccentTextColor = Color.Empty;
+            btnCancel.Size = new Size(77, 36);
             btnCancel.TabIndex = 14;
             btnCancel.Text = "Cancel";
-            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Type = MaterialButton.MaterialButtonType.Contained;
+            btnCancel.UseAccentColor = false;
             btnCancel.Click += btnCancel_Click;
             // 
             // FormProgramLicenseDetails
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(406, 450);
+            ClientSize = new Size(321, 286);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);
-            Controls.Add(labelLicense);
-            Controls.Add(labelProgram);
             Controls.Add(cmbLicenseID);
             Controls.Add(cmbProgramID);
             Name = "FormProgramLicenseDetails";
-            Text = "FormProgramLicenseDetails";
+            Text = "Program-License Details";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private ComboBox cmbProgramID;
-        private ComboBox cmbLicenseID;
-        private Label labelProgram;
-        private Label labelLicense;
-        private Button btnSave;
-        private Button btnCancel;
+        private MaterialComboBox cmbProgramID;
+        private MaterialComboBox cmbLicenseID;
+        private MaterialButton btnSave;
+        private MaterialButton btnCancel;
     }
 }

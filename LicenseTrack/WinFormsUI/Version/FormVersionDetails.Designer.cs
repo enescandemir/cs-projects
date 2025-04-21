@@ -1,16 +1,13 @@
-﻿namespace WinFormsUI.Version
+﻿using MaterialSkin.Controls;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace WinFormsUI.Version
 {
     partial class FormVersionDetails
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,167 +19,188 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            cmbType = new ComboBox();
-            labelType = new Label();
-            txtName = new TextBox();
-            labelName = new Label();
-            labelNumber = new Label();
-            txtNumber = new TextBox();
-            txtDescription = new RichTextBox();
-            labelDescription = new Label();
-            cmbDependentID = new ComboBox();
-            labelDependentID = new Label();
-            btnCancel = new Button();
-            btnSave = new Button();
+            cmbType = new MaterialComboBox();
+            txtName = new MaterialTextBox();
+            txtNumber = new MaterialTextBox();
+            txtDescription = new MaterialMultiLineTextBox2();
+            cmbDependentID = new MaterialComboBox();
+            btnCancel = new MaterialButton();
+            btnSave = new MaterialButton();
             SuspendLayout();
             // 
             // cmbType
             // 
+            cmbType.AutoResize = false;
+            cmbType.BackColor = Color.FromArgb(255, 255, 255);
+            cmbType.Depth = 0;
+            cmbType.DrawMode = DrawMode.OwnerDrawVariable;
+            cmbType.DropDownHeight = 174;
             cmbType.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbType.FormattingEnabled = true;
-            cmbType.Location = new Point(193, 59);
+            cmbType.DropDownWidth = 121;
+            cmbType.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            cmbType.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            cmbType.Hint = "Select Type";
+            cmbType.IntegralHeight = false;
+            cmbType.ItemHeight = 43;
+            cmbType.Location = new Point(48, 82);
+            cmbType.MaxDropDownItems = 4;
+            cmbType.MouseState = MaterialSkin.MouseState.OUT;
             cmbType.Name = "cmbType";
-            cmbType.Size = new Size(151, 28);
+            cmbType.Size = new Size(273, 49);
+            cmbType.StartIndex = 0;
             cmbType.TabIndex = 7;
-            // 
-            // labelType
-            // 
-            labelType.AutoSize = true;
-            labelType.Location = new Point(34, 62);
-            labelType.Name = "labelType";
-            labelType.Size = new Size(40, 20);
-            labelType.TabIndex = 8;
-            labelType.Text = "Type";
             // 
             // txtName
             // 
-            txtName.Location = new Point(193, 116);
+            txtName.AnimateReadOnly = false;
+            txtName.BorderStyle = BorderStyle.None;
+            txtName.Depth = 0;
+            txtName.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtName.Hint = "Name";
+            txtName.LeadingIcon = null;
+            txtName.Location = new Point(48, 137);
+            txtName.MaxLength = 32767;
+            txtName.MouseState = MaterialSkin.MouseState.OUT;
+            txtName.Multiline = false;
             txtName.Name = "txtName";
-            txtName.Size = new Size(125, 27);
+            txtName.Size = new Size(273, 50);
             txtName.TabIndex = 9;
-            // 
-            // labelName
-            // 
-            labelName.AutoSize = true;
-            labelName.Location = new Point(34, 123);
-            labelName.Name = "labelName";
-            labelName.Size = new Size(49, 20);
-            labelName.TabIndex = 10;
-            labelName.Text = "Name";
-            // 
-            // labelNumber
-            // 
-            labelNumber.AutoSize = true;
-            labelNumber.Location = new Point(34, 181);
-            labelNumber.Name = "labelNumber";
-            labelNumber.Size = new Size(63, 20);
-            labelNumber.TabIndex = 11;
-            labelNumber.Text = "Number";
+            txtName.Text = "";
+            txtName.TrailingIcon = null;
             // 
             // txtNumber
             // 
-            txtNumber.Location = new Point(193, 181);
+            txtNumber.AnimateReadOnly = false;
+            txtNumber.BorderStyle = BorderStyle.None;
+            txtNumber.Depth = 0;
+            txtNumber.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtNumber.Hint = "Number";
+            txtNumber.LeadingIcon = null;
+            txtNumber.Location = new Point(48, 193);
+            txtNumber.MaxLength = 32767;
+            txtNumber.MouseState = MaterialSkin.MouseState.OUT;
+            txtNumber.Multiline = false;
             txtNumber.Name = "txtNumber";
-            txtNumber.Size = new Size(125, 27);
+            txtNumber.Size = new Size(273, 50);
             txtNumber.TabIndex = 12;
+            txtNumber.Text = "";
+            txtNumber.TrailingIcon = null;
             // 
             // txtDescription
             // 
-            txtDescription.Location = new Point(193, 231);
+            txtDescription.AnimateReadOnly = false;
+            txtDescription.BackColor = SystemColors.Control;
+            txtDescription.BackgroundImageLayout = ImageLayout.None;
+            txtDescription.CharacterCasing = CharacterCasing.Normal;
+            txtDescription.Depth = 0;
+            txtDescription.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            txtDescription.HideSelection = true;
+            txtDescription.Hint = "Description";
+            txtDescription.Location = new Point(48, 249);
+            txtDescription.MaxLength = 32767;
+            txtDescription.MouseState = MaterialSkin.MouseState.OUT;
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(504, 63);
+            txtDescription.PasswordChar = '\0';
+            txtDescription.ReadOnly = false;
+            txtDescription.ScrollBars = ScrollBars.None;
+            txtDescription.SelectedText = "";
+            txtDescription.SelectionLength = 0;
+            txtDescription.SelectionStart = 0;
+            txtDescription.ShortcutsEnabled = true;
+            txtDescription.Size = new Size(273, 111);
             txtDescription.TabIndex = 13;
-            txtDescription.Text = "";
-            // 
-            // labelDescription
-            // 
-            labelDescription.AutoSize = true;
-            labelDescription.Location = new Point(34, 234);
-            labelDescription.Name = "labelDescription";
-            labelDescription.Size = new Size(85, 20);
-            labelDescription.TabIndex = 14;
-            labelDescription.Text = "Description";
+            txtDescription.TabStop = false;
+            txtDescription.TextAlign = HorizontalAlignment.Left;
+            txtDescription.UseSystemPasswordChar = false;
             // 
             // cmbDependentID
             // 
+            cmbDependentID.AutoResize = false;
+            cmbDependentID.BackColor = Color.FromArgb(255, 255, 255);
+            cmbDependentID.Depth = 0;
+            cmbDependentID.DrawMode = DrawMode.OwnerDrawVariable;
+            cmbDependentID.DropDownHeight = 174;
             cmbDependentID.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbDependentID.FormattingEnabled = true;
-            cmbDependentID.Location = new Point(193, 318);
+            cmbDependentID.DropDownWidth = 121;
+            cmbDependentID.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            cmbDependentID.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            cmbDependentID.Hint = "Select Dependent ID";
+            cmbDependentID.IntegralHeight = false;
+            cmbDependentID.ItemHeight = 43;
+            cmbDependentID.Location = new Point(48, 366);
+            cmbDependentID.MaxDropDownItems = 4;
+            cmbDependentID.MouseState = MaterialSkin.MouseState.OUT;
             cmbDependentID.Name = "cmbDependentID";
-            cmbDependentID.Size = new Size(151, 28);
+            cmbDependentID.Size = new Size(273, 49);
+            cmbDependentID.StartIndex = 0;
             cmbDependentID.TabIndex = 15;
-            // 
-            // labelDependentID
-            // 
-            labelDependentID.AutoSize = true;
-            labelDependentID.Location = new Point(21, 321);
-            labelDependentID.Name = "labelDependentID";
-            labelDependentID.Size = new Size(98, 20);
-            labelDependentID.TabIndex = 16;
-            labelDependentID.Text = "DependentID";
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(224, 388);
+            btnCancel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCancel.Density = MaterialButton.MaterialButtonDensity.Default;
+            btnCancel.Depth = 0;
+            btnCancel.HighEmphasis = true;
+            btnCancel.Icon = null;
+            btnCancel.Location = new Point(228, 424);
+            btnCancel.Margin = new Padding(4, 6, 4, 6);
+            btnCancel.MouseState = MaterialSkin.MouseState.HOVER;
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(94, 29);
+            btnCancel.NoAccentTextColor = Color.Empty;
+            btnCancel.Size = new Size(77, 36);
             btnCancel.TabIndex = 17;
             btnCancel.Text = "Cancel";
-            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Type = MaterialButton.MaterialButtonType.Contained;
+            btnCancel.UseAccentColor = false;
             btnCancel.Click += btnCancel_Click;
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(48, 388);
+            btnSave.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnSave.Density = MaterialButton.MaterialButtonDensity.Default;
+            btnSave.Depth = 0;
+            btnSave.HighEmphasis = true;
+            btnSave.Icon = null;
+            btnSave.Location = new Point(48, 424);
+            btnSave.Margin = new Padding(4, 6, 4, 6);
+            btnSave.MouseState = MaterialSkin.MouseState.HOVER;
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(94, 29);
+            btnSave.NoAccentTextColor = Color.Empty;
+            btnSave.Size = new Size(64, 36);
             btnSave.TabIndex = 18;
             btnSave.Text = "Save";
-            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Type = MaterialButton.MaterialButtonType.Contained;
+            btnSave.UseAccentColor = false;
             btnSave.Click += btnSave_Click;
             // 
             // FormVersionDetails
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(358, 479);
             Controls.Add(btnSave);
             Controls.Add(btnCancel);
-            Controls.Add(labelDependentID);
             Controls.Add(cmbDependentID);
-            Controls.Add(labelDescription);
             Controls.Add(txtDescription);
             Controls.Add(txtNumber);
-            Controls.Add(labelNumber);
-            Controls.Add(labelName);
             Controls.Add(txtName);
-            Controls.Add(labelType);
             Controls.Add(cmbType);
             Name = "FormVersionDetails";
-            Text = "FormVersionDetails";
+            Text = "Version Details";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private ComboBox cmbType;
-        private Label labelType;
-        private TextBox txtName;
-        private Label labelName;
-        private Label labelNumber;
-        private TextBox txtNumber;
-        private RichTextBox txtDescription;
-        private Label labelDescription;
-        private ComboBox cmbDependentID;
-        private Label labelDependentID;
-        private Button btnCancel;
-        private Button btnSave;
+        private MaterialComboBox cmbType;
+        private MaterialTextBox txtName;
+        private MaterialTextBox txtNumber;
+        private MaterialMultiLineTextBox2 txtDescription;
+        private MaterialComboBox cmbDependentID;
+        private MaterialButton btnCancel;
+        private MaterialButton btnSave;
     }
 }

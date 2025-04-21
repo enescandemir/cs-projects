@@ -2,13 +2,14 @@
 using DataAccess.Concrete;
 using Entities.Concrete;
 using Entities.Concrete.Enums;
+using MaterialSkin.Controls;
 using System;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace WinFormsUI.Version
 {
-    public partial class FormVersionDetails : Form
+    public partial class FormVersionDetails : MaterialForm
     {
         public Entities.Concrete.Version Version { get; set; }
         private VersionManager versionManager = new VersionManager(new EfVersionDal());
@@ -18,7 +19,7 @@ namespace WinFormsUI.Version
             InitializeComponent();
             LoadVersionTypes();
             LoadDependentVersions();
-
+            
             if (version != null)
             {
                 Version = version;

@@ -1,16 +1,14 @@
-﻿namespace WinFormsUI.ProgramLicense
+﻿using MaterialSkin;
+using MaterialSkin.Controls;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace WinFormsUI.ProgramLicense
 {
     partial class FormProgramLicense
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,58 +20,102 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            buttonAdd = new Button();
-            buttonUpdate = new Button();
-            buttonDelete = new Button();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             dgwProgramLicense = new DataGridView();
+            buttonAdd = new MaterialButton();
+            buttonUpdate = new MaterialButton();
+            buttonDelete = new MaterialButton();
             ((System.ComponentModel.ISupportInitialize)dgwProgramLicense).BeginInit();
             SuspendLayout();
-            // 
-            // buttonAdd
-            // 
-            buttonAdd.Location = new Point(47, 36);
-            buttonAdd.Name = "buttonAdd";
-            buttonAdd.Size = new Size(110, 41);
-            buttonAdd.TabIndex = 4;
-            buttonAdd.Text = "Add";
-            buttonAdd.UseVisualStyleBackColor = true;
-            buttonAdd.Click += buttonAdd_Click;
-            // 
-            // buttonUpdate
-            // 
-            buttonUpdate.Location = new Point(236, 36);
-            buttonUpdate.Name = "buttonUpdate";
-            buttonUpdate.Size = new Size(110, 41);
-            buttonUpdate.TabIndex = 5;
-            buttonUpdate.Text = "Update";
-            buttonUpdate.UseVisualStyleBackColor = true;
-            buttonUpdate.Click += buttonUpdate_Click;
-            // 
-            // buttonDelete
-            // 
-            buttonDelete.Location = new Point(435, 36);
-            buttonDelete.Name = "buttonDelete";
-            buttonDelete.Size = new Size(110, 41);
-            buttonDelete.TabIndex = 6;
-            buttonDelete.Text = "Delete";
-            buttonDelete.UseVisualStyleBackColor = true;
-            buttonDelete.Click += buttonDelete_Click;
             // 
             // dgwProgramLicense
             // 
             dgwProgramLicense.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgwProgramLicense.BackgroundColor = Color.FromArgb(245, 245, 245);
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(55, 71, 79);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgwProgramLicense.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgwProgramLicense.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgwProgramLicense.Location = new Point(24, 139);
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(236, 239, 241);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.FromArgb(33, 33, 33);
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(144, 202, 249);
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgwProgramLicense.DefaultCellStyle = dataGridViewCellStyle2;
+            dgwProgramLicense.EnableHeadersVisualStyles = false;
+            dgwProgramLicense.GridColor = Color.FromArgb(176, 190, 197);
+            dgwProgramLicense.Location = new Point(24, 130);
             dgwProgramLicense.Name = "dgwProgramLicense";
             dgwProgramLicense.RowHeadersWidth = 51;
-            dgwProgramLicense.Size = new Size(609, 299);
+            dgwProgramLicense.Size = new Size(609, 308);
             dgwProgramLicense.TabIndex = 7;
+            // 
+            // buttonAdd
+            // 
+            buttonAdd.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonAdd.Density = MaterialButton.MaterialButtonDensity.Default;
+            buttonAdd.Depth = 0;
+            buttonAdd.HighEmphasis = true;
+            buttonAdd.Icon = null;
+            buttonAdd.Location = new Point(24, 85);
+            buttonAdd.Margin = new Padding(4, 6, 4, 6);
+            buttonAdd.MouseState = MouseState.HOVER;
+            buttonAdd.Name = "buttonAdd";
+            buttonAdd.NoAccentTextColor = Color.Empty;
+            buttonAdd.Size = new Size(64, 36);
+            buttonAdd.TabIndex = 4;
+            buttonAdd.Text = "Add";
+            buttonAdd.Type = MaterialButton.MaterialButtonType.Contained;
+            buttonAdd.UseAccentColor = false;
+            buttonAdd.Click += buttonAdd_Click;
+            // 
+            // buttonUpdate
+            // 
+            buttonUpdate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonUpdate.Density = MaterialButton.MaterialButtonDensity.Default;
+            buttonUpdate.Depth = 0;
+            buttonUpdate.HighEmphasis = true;
+            buttonUpdate.Icon = null;
+            buttonUpdate.Location = new Point(276, 85);
+            buttonUpdate.Margin = new Padding(4, 6, 4, 6);
+            buttonUpdate.MouseState = MouseState.HOVER;
+            buttonUpdate.Name = "buttonUpdate";
+            buttonUpdate.NoAccentTextColor = Color.Empty;
+            buttonUpdate.Size = new Size(77, 36);
+            buttonUpdate.TabIndex = 5;
+            buttonUpdate.Text = "Update";
+            buttonUpdate.Type = MaterialButton.MaterialButtonType.Contained;
+            buttonUpdate.UseAccentColor = false;
+            buttonUpdate.Click += buttonUpdate_Click;
+            // 
+            // buttonDelete
+            // 
+            buttonDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonDelete.Density = MaterialButton.MaterialButtonDensity.Default;
+            buttonDelete.Depth = 0;
+            buttonDelete.HighEmphasis = true;
+            buttonDelete.Icon = null;
+            buttonDelete.Location = new Point(560, 85);
+            buttonDelete.Margin = new Padding(4, 6, 4, 6);
+            buttonDelete.MouseState = MouseState.HOVER;
+            buttonDelete.Name = "buttonDelete";
+            buttonDelete.NoAccentTextColor = Color.Empty;
+            buttonDelete.Size = new Size(73, 36);
+            buttonDelete.TabIndex = 6;
+            buttonDelete.Text = "Delete";
+            buttonDelete.Type = MaterialButton.MaterialButtonType.Contained;
+            buttonDelete.UseAccentColor = false;
+            buttonDelete.Click += buttonDelete_Click;
             // 
             // FormProgramLicense
             // 
@@ -85,16 +127,17 @@
             Controls.Add(buttonUpdate);
             Controls.Add(buttonAdd);
             Name = "FormProgramLicense";
-            Text = "FormProgramLicense";
+            Text = "Program-License Management";
             ((System.ComponentModel.ISupportInitialize)dgwProgramLicense).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private Button buttonAdd;
-        private Button buttonUpdate;
-        private Button buttonDelete;
         private DataGridView dgwProgramLicense;
+        private MaterialButton buttonAdd;
+        private MaterialButton buttonUpdate;
+        private MaterialButton buttonDelete;
     }
 }

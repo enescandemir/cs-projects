@@ -1,16 +1,14 @@
-﻿namespace WinFormsUI.UpdateTable
+﻿using MaterialSkin;
+using MaterialSkin.Controls;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace WinFormsUI.UpdateTable
 {
     partial class FormUpdateTable
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,79 +20,124 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            buttonAdd = new Button();
-            buttonUpdate = new Button();
-            buttonDelete = new Button();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             dgwUpdateTable = new DataGridView();
+            buttonAdd = new MaterialButton();
+            buttonUpdate = new MaterialButton();
+            buttonDelete = new MaterialButton();
             ((System.ComponentModel.ISupportInitialize)dgwUpdateTable).BeginInit();
             SuspendLayout();
-            // 
-            // buttonAdd
-            // 
-            buttonAdd.Location = new Point(52, 57);
-            buttonAdd.Name = "buttonAdd";
-            buttonAdd.Size = new Size(110, 41);
-            buttonAdd.TabIndex = 5;
-            buttonAdd.Text = "Add";
-            buttonAdd.UseVisualStyleBackColor = true;
-            buttonAdd.Click += buttonAdd_Click;
-            // 
-            // buttonUpdate
-            // 
-            buttonUpdate.Location = new Point(262, 57);
-            buttonUpdate.Name = "buttonUpdate";
-            buttonUpdate.Size = new Size(110, 41);
-            buttonUpdate.TabIndex = 6;
-            buttonUpdate.Text = "Update";
-            buttonUpdate.UseVisualStyleBackColor = true;
-            buttonUpdate.Click += buttonUpdate_Click;
-            // 
-            // buttonDelete
-            // 
-            buttonDelete.Location = new Point(472, 57);
-            buttonDelete.Name = "buttonDelete";
-            buttonDelete.Size = new Size(110, 41);
-            buttonDelete.TabIndex = 7;
-            buttonDelete.Text = "Delete";
-            buttonDelete.UseVisualStyleBackColor = true;
-            buttonDelete.Click += buttonDelete_Click;
             // 
             // dgwUpdateTable
             // 
             dgwUpdateTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgwUpdateTable.BackgroundColor = Color.FromArgb(245, 245, 245);
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(55, 71, 79);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgwUpdateTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgwUpdateTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgwUpdateTable.Location = new Point(28, 139);
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(236, 239, 241);
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = Color.FromArgb(33, 33, 33);
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(144, 202, 249);
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgwUpdateTable.DefaultCellStyle = dataGridViewCellStyle4;
+            dgwUpdateTable.EnableHeadersVisualStyles = false;
+            dgwUpdateTable.GridColor = Color.FromArgb(176, 190, 197);
+            dgwUpdateTable.Location = new Point(17, 130);
             dgwUpdateTable.Name = "dgwUpdateTable";
             dgwUpdateTable.RowHeadersWidth = 51;
-            dgwUpdateTable.Size = new Size(634, 299);
+            dgwUpdateTable.Size = new Size(634, 308);
             dgwUpdateTable.TabIndex = 8;
+            // 
+            // buttonAdd
+            // 
+            buttonAdd.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonAdd.Density = MaterialButton.MaterialButtonDensity.Default;
+            buttonAdd.Depth = 0;
+            buttonAdd.HighEmphasis = true;
+            buttonAdd.Icon = null;
+            buttonAdd.Location = new Point(17, 85);
+            buttonAdd.Margin = new Padding(4, 6, 4, 6);
+            buttonAdd.MouseState = MouseState.HOVER;
+            buttonAdd.Name = "buttonAdd";
+            buttonAdd.NoAccentTextColor = Color.Empty;
+            buttonAdd.Size = new Size(64, 36);
+            buttonAdd.TabIndex = 5;
+            buttonAdd.Text = "Add";
+            buttonAdd.Type = MaterialButton.MaterialButtonType.Contained;
+            buttonAdd.UseAccentColor = false;
+            buttonAdd.Click += buttonAdd_Click;
+            // 
+            // buttonUpdate
+            // 
+            buttonUpdate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonUpdate.Density = MaterialButton.MaterialButtonDensity.Default;
+            buttonUpdate.Depth = 0;
+            buttonUpdate.HighEmphasis = true;
+            buttonUpdate.Icon = null;
+            buttonUpdate.Location = new Point(280, 85);
+            buttonUpdate.Margin = new Padding(4, 6, 4, 6);
+            buttonUpdate.MouseState = MouseState.HOVER;
+            buttonUpdate.Name = "buttonUpdate";
+            buttonUpdate.NoAccentTextColor = Color.Empty;
+            buttonUpdate.Size = new Size(77, 36);
+            buttonUpdate.TabIndex = 6;
+            buttonUpdate.Text = "Update";
+            buttonUpdate.Type = MaterialButton.MaterialButtonType.Contained;
+            buttonUpdate.UseAccentColor = false;
+            buttonUpdate.Click += buttonUpdate_Click;
+            // 
+            // buttonDelete
+            // 
+            buttonDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonDelete.Density = MaterialButton.MaterialButtonDensity.Default;
+            buttonDelete.Depth = 0;
+            buttonDelete.HighEmphasis = true;
+            buttonDelete.Icon = null;
+            buttonDelete.Location = new Point(578, 85);
+            buttonDelete.Margin = new Padding(4, 6, 4, 6);
+            buttonDelete.MouseState = MouseState.HOVER;
+            buttonDelete.Name = "buttonDelete";
+            buttonDelete.NoAccentTextColor = Color.Empty;
+            buttonDelete.Size = new Size(73, 36);
+            buttonDelete.TabIndex = 7;
+            buttonDelete.Text = "Delete";
+            buttonDelete.Type = MaterialButton.MaterialButtonType.Contained;
+            buttonDelete.UseAccentColor = false;
+            buttonDelete.Click += buttonDelete_Click;
             // 
             // FormUpdateTable
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(702, 450);
+            ClientSize = new Size(666, 449);
             Controls.Add(dgwUpdateTable);
             Controls.Add(buttonDelete);
             Controls.Add(buttonUpdate);
             Controls.Add(buttonAdd);
             Name = "FormUpdateTable";
-            Text = "FormUpdateTable";
+            Text = "Update Management";
             ((System.ComponentModel.ISupportInitialize)dgwUpdateTable).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private Button buttonAdd;
-        private Button buttonUpdate;
-        private Button buttonDelete;
         private DataGridView dgwUpdateTable;
+        private MaterialButton buttonAdd;
+        private MaterialButton buttonUpdate;
+        private MaterialButton buttonDelete;
     }
 }
