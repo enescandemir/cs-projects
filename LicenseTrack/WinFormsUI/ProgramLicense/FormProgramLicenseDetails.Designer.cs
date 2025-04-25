@@ -38,7 +38,7 @@ namespace WinFormsUI.ProgramLicense
             cmbProgramID.DropDownWidth = 121;
             cmbProgramID.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
             cmbProgramID.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cmbProgramID.Hint = "Select Program";
+            cmbProgramID.Hint = "Program Seçin";
             cmbProgramID.IntegralHeight = false;
             cmbProgramID.ItemHeight = 43;
             cmbProgramID.Location = new Point(28, 82);
@@ -60,7 +60,7 @@ namespace WinFormsUI.ProgramLicense
             cmbLicenseID.DropDownWidth = 121;
             cmbLicenseID.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
             cmbLicenseID.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cmbLicenseID.Hint = "Select License";
+            cmbLicenseID.Hint = "Lisans Seçin";
             cmbLicenseID.IntegralHeight = false;
             cmbLicenseID.ItemHeight = 43;
             cmbLicenseID.Location = new Point(28, 147);
@@ -85,7 +85,7 @@ namespace WinFormsUI.ProgramLicense
             btnSave.NoAccentTextColor = Color.Empty;
             btnSave.Size = new Size(64, 36);
             btnSave.TabIndex = 13;
-            btnSave.Text = "Save";
+            btnSave.Text = "Kaydet";
             btnSave.Type = MaterialButton.MaterialButtonType.Contained;
             btnSave.UseAccentColor = false;
             btnSave.Click += btnSave_Click;
@@ -104,7 +104,7 @@ namespace WinFormsUI.ProgramLicense
             btnCancel.NoAccentTextColor = Color.Empty;
             btnCancel.Size = new Size(77, 36);
             btnCancel.TabIndex = 14;
-            btnCancel.Text = "Cancel";
+            btnCancel.Text = "İptal";
             btnCancel.Type = MaterialButton.MaterialButtonType.Contained;
             btnCancel.UseAccentColor = false;
             btnCancel.Click += btnCancel_Click;
@@ -119,10 +119,31 @@ namespace WinFormsUI.ProgramLicense
             Controls.Add(cmbLicenseID);
             Controls.Add(cmbProgramID);
             Name = "FormProgramLicenseDetails";
-            Text = "Program-License Details";
+            Text = "Program-Lisans Detayları";
             ResumeLayout(false);
             PerformLayout();
         }
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            int formWidth = ClientSize.Width;
+            int formHeight = ClientSize.Height;
+
+            cmbProgramID.Location = new Point(28, 82);
+            cmbProgramID.Size = new Size(formWidth - 56, cmbProgramID.Height); 
+
+            cmbLicenseID.Location = new Point(28, cmbProgramID.Bottom + 10);
+            cmbLicenseID.Size = new Size(formWidth - 56, cmbLicenseID.Height);
+
+            btnSave.Location = new Point(28, cmbLicenseID.Bottom + 20); 
+            btnCancel.Location = new Point(formWidth - btnCancel.Width - 28, cmbLicenseID.Bottom + 20);
+        }
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            OnResize(EventArgs.Empty);
+        }
+
 
         #endregion
 

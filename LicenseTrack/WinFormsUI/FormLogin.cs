@@ -15,21 +15,27 @@ namespace WinFormsUI
         private UserManager _userManager;
         private Icon eyeIcon = Properties.Resources.eye; 
         private Icon hideIcon = Properties.Resources.hide;
-        private bool passwordVisible = false; 
+        private bool passwordVisible = false;
 
 
         public FormLogin()
         {
             InitializeComponent();
-
+            this.Location = new Point(
+            (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2,
+            (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2
+            );
+            txtPassword.Password = true;
+            txtPassword.TrailingIcon = eyeIcon.ToBitmap(); 
             var configuration = new ConfigurationBuilder()
-                .SetBasePath(@"C:\Users\bilal\source\repos\LicenseTrack\WebAPI") // WebAPI directory path
+                .SetBasePath(@"C:\Users\bilal\source\repos\LicenseTrack\WebAPI")
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .Build();
 
             _userManager = new UserManager(new EfUserDal());
             _authManager = new AuthManager(_userManager, new JwtHelper(configuration));
         }
+
 
 
         private void btnLogin_Click(object sender, EventArgs e)

@@ -10,6 +10,7 @@ namespace DataAccess.Concrete
         {
             optionsBuilder.UseSqlServer("Server=.;Database=LicenseTrack;Trusted_Connection=True;TrustServerCertificate=True;");
         }
+
         public DbSet<Customer> Customer { get; set; }
         public DbSet<License> License { get; set; }
         public DbSet<Program> Program { get; set; }

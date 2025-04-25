@@ -4,7 +4,8 @@ using MaterialSkin.Controls;
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using Core.Utilities.Session; 
+using Core.Utilities.Session;
+using Entities.Concrete.DTOs.Entities.Concrete.DTOs;
 
 namespace WinFormsUI.UpdateTable
 {
@@ -22,8 +23,14 @@ namespace WinFormsUI.UpdateTable
         {
             try
             {
-                var updates = updateTableManager.GetAll();
+                var updates = updateTableManager.GetAllWithNames(); 
                 dgwUpdateTable.DataSource = updates;
+                dgwUpdateTable.Columns["UpdateID"].HeaderText = "Güncelleme ID";
+                dgwUpdateTable.Columns["CustomerName"].HeaderText = "Müşteri Adı";
+                dgwUpdateTable.Columns["VersionName"].HeaderText = "Versiyon Adı";
+                dgwUpdateTable.Columns["UpdateDate"].HeaderText = "Güncelleme Tarihi";
+                dgwUpdateTable.Columns["Description"].HeaderText = "Açıklama";
+
 
                 if (updates.Count == 0)
                 {
@@ -36,6 +43,7 @@ namespace WinFormsUI.UpdateTable
             }
         }
 
+
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             if (!IsAdmin())
@@ -47,7 +55,7 @@ namespace WinFormsUI.UpdateTable
             FormUpdateTableDetails form = new FormUpdateTableDetails();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                dgwUpdateTable.DataSource = updateTableManager.GetAll();
+                RefreshDataGridView();
             }
         }
 
@@ -65,13 +73,22 @@ namespace WinFormsUI.UpdateTable
                 return;
             }
 
-            Entities.Concrete.UpdateTable selectedUpdate = (Entities.Concrete.UpdateTable)dgwUpdateTable.CurrentRow.DataBoundItem;
-            FormUpdateTableDetails form = new FormUpdateTableDetails(selectedUpdate);
+            UpdateTableDto selectedUpdateDTO = (UpdateTableDto)dgwUpdateTable.CurrentRow.DataBoundItem;
+            var originalUpdate = updateTableManager.GetByUpdateId(selectedUpdateDTO.UpdateID).FirstOrDefault();
+
+            if (originalUpdate == null)
+            {
+                MessageBox.Show("Seçilen güncelleme bulunamadı.");
+                return;
+            }
+
+            FormUpdateTableDetails form = new FormUpdateTableDetails(originalUpdate);
             if (form.ShowDialog() == DialogResult.OK)
             {
-                dgwUpdateTable.DataSource = updateTableManager.GetAll();
+                RefreshDataGridView();
             }
         }
+
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
@@ -87,21 +104,30 @@ namespace WinFormsUI.UpdateTable
                 return;
             }
 
-            Entities.Concrete.UpdateTable selectedUpdate = (Entities.Concrete.UpdateTable)dgwUpdateTable.CurrentRow.DataBoundItem;
+            UpdateTableDto selectedUpdateDto = (UpdateTableDto)dgwUpdateTable.CurrentRow.DataBoundItem;
+
+            var originalUpdate = updateTableManager.GetByUpdateId(selectedUpdateDto.UpdateID).FirstOrDefault();
+
+            if (originalUpdate == null)
+            {
+                MessageBox.Show("Seçilen güncelleme bulunamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             DialogResult dialogResult = MessageBox.Show(
-                $"{selectedUpdate.UpdateID} numaralı güncellemeyi silmek istediğinize emin misiniz?",
+                $"{originalUpdate.UpdateID} numaralı güncellemeyi silmek istediğinize emin misiniz?",
                 "Silme Onayı",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
             if (dialogResult == DialogResult.Yes)
             {
-                updateTableManager.Delete(selectedUpdate);
+                updateTableManager.Delete(originalUpdate);
                 MessageBox.Show("Güncelleme başarıyla silindi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dgwUpdateTable.DataSource = updateTableManager.GetAll();
+                RefreshDataGridView();
             }
         }
+
 
         private bool IsAdmin()
         {
@@ -125,6 +151,12 @@ namespace WinFormsUI.UpdateTable
                 MessageBox.Show($"Token doğrulama sırasında bir hata oluştu: {ex.Message}", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+        }
+        private void RefreshDataGridView()
+        {
+            var updates = updateTableManager.GetAllWithNames();
+            dgwUpdateTable.DataSource = null;
+            dgwUpdateTable.DataSource = updates;
         }
     }
 }

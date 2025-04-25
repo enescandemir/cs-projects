@@ -32,7 +32,7 @@ namespace WinFormsUI.ProgramFrm
             txtName.BorderStyle = BorderStyle.None;
             txtName.Depth = 0;
             txtName.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtName.Hint = "Program Name";
+            txtName.Hint = "Program Adı";
             txtName.LeadingIcon = null;
             txtName.Location = new Point(29, 77);
             txtName.MaxLength = 50;
@@ -58,7 +58,7 @@ namespace WinFormsUI.ProgramFrm
             btnSave.NoAccentTextColor = Color.Empty;
             btnSave.Size = new Size(64, 36);
             btnSave.TabIndex = 2;
-            btnSave.Text = "Save";
+            btnSave.Text = "Kaydet";
             btnSave.Type = MaterialButton.MaterialButtonType.Contained;
             btnSave.UseAccentColor = false;
             btnSave.Click += btnSave_Click;
@@ -77,7 +77,7 @@ namespace WinFormsUI.ProgramFrm
             btnCancel.NoAccentTextColor = Color.Empty;
             btnCancel.Size = new Size(77, 36);
             btnCancel.TabIndex = 3;
-            btnCancel.Text = "Cancel";
+            btnCancel.Text = "İptal";
             btnCancel.Type = MaterialButton.MaterialButtonType.Contained;
             btnCancel.UseAccentColor = false;
             btnCancel.Click += btnCancel_Click;
@@ -91,9 +91,28 @@ namespace WinFormsUI.ProgramFrm
             Controls.Add(btnSave);
             Controls.Add(btnCancel);
             Name = "FormProgramDetails";
-            Text = "Program Details";
+            Text = "Program Detayları";
             ResumeLayout(false);
             PerformLayout();
+        }
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+
+            int formWidth = ClientSize.Width;
+            int formHeight = ClientSize.Height;
+
+            txtName.Location = new Point(29, 77);
+            txtName.Size = new Size(formWidth - 58, txtName.Height); 
+
+            btnSave.Location = new Point(29, txtName.Bottom + 20); 
+            btnCancel.Location = new Point(formWidth - btnCancel.Width - 29, txtName.Bottom + 20); 
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            OnResize(EventArgs.Empty); 
         }
 
         #endregion

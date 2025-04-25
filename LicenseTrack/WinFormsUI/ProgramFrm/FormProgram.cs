@@ -13,6 +13,7 @@ namespace WinFormsUI.ProgramFrm
     public partial class FormProgram : MaterialForm
     {
         ProgramManager programManager = new ProgramManager(new EfProgramDal());
+        ProgramLicenseManager programLicenseManager = new ProgramLicenseManager(new EfProgramLicenseDal());
 
         public FormProgram()
         {
@@ -26,7 +27,8 @@ namespace WinFormsUI.ProgramFrm
             {
                 var programs = programManager.GetAll();
                 dgwProgram.DataSource = programs;
-
+                dgwProgram.Columns["ProgramID"].HeaderText = "Program ID";
+                dgwProgram.Columns["Name"].HeaderText = "Program Adı";
                 if (programs.Count == 0)
                 {
                     MessageBox.Show("Veritabanında program bulunamadı.");
@@ -93,18 +95,18 @@ namespace WinFormsUI.ProgramFrm
             Entities.Concrete.Program selectedProgram = (Entities.Concrete.Program)dgwProgram.CurrentRow.DataBoundItem;
 
             DialogResult dialogResult = MessageBox.Show(
-                $"{selectedProgram.ProgramID} numaralı programı silmek istediğinize emin misiniz?",
+                $"{selectedProgram.ProgramID} numaralı programı ve bağlı tüm Program-Lisans verilerini silmek istediğinize emin misiniz?",
                 "Silme Onayı",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
             if (dialogResult == DialogResult.Yes)
             {
-                programManager.Delete(selectedProgram);
-                MessageBox.Show("Program başarıyla silindi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DeleteProgramDependencies(selectedProgram.ProgramID);
                 dgwProgram.DataSource = programManager.GetAll();
             }
         }
+
 
         private bool IsAdmin()
         {
@@ -129,5 +131,22 @@ namespace WinFormsUI.ProgramFrm
                 return false;
             }
         }
+        private void DeleteProgramDependencies(int programId)
+        {
+            var dependentProgramLicenses = programLicenseManager.GetByProgramId(programId).ToList();
+
+            foreach (var programLicense in dependentProgramLicenses)
+            {
+                programLicenseManager.Delete(programLicense);
+            }
+
+            var program = programManager.GetByProgramId(programId).FirstOrDefault();
+            if (program != null)
+            {
+                programManager.Delete(program); 
+                MessageBox.Show("Program ve bağlı program lisansları başarıyla silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
     }
 }

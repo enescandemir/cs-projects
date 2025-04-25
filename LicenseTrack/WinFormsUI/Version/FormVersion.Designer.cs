@@ -74,7 +74,7 @@ namespace WinFormsUI.Version
             buttonAdd.NoAccentTextColor = Color.Empty;
             buttonAdd.Size = new Size(64, 36);
             buttonAdd.TabIndex = 3;
-            buttonAdd.Text = "Add";
+            buttonAdd.Text = "Ekle";
             buttonAdd.Type = MaterialButton.MaterialButtonType.Contained;
             buttonAdd.UseAccentColor = false;
             buttonAdd.Click += buttonAdd_Click;
@@ -93,7 +93,7 @@ namespace WinFormsUI.Version
             buttonUpdate.NoAccentTextColor = Color.Empty;
             buttonUpdate.Size = new Size(77, 36);
             buttonUpdate.TabIndex = 4;
-            buttonUpdate.Text = "Update";
+            buttonUpdate.Text = "Güncelle";
             buttonUpdate.Type = MaterialButton.MaterialButtonType.Contained;
             buttonUpdate.UseAccentColor = false;
             buttonUpdate.Click += buttonUpdate_Click;
@@ -112,7 +112,7 @@ namespace WinFormsUI.Version
             buttonDelete.NoAccentTextColor = Color.Empty;
             buttonDelete.Size = new Size(73, 36);
             buttonDelete.TabIndex = 5;
-            buttonDelete.Text = "Delete";
+            buttonDelete.Text = "Sil";
             buttonDelete.Type = MaterialButton.MaterialButtonType.Contained;
             buttonDelete.UseAccentColor = false;
             buttonDelete.Click += buttonDelete_Click;
@@ -127,11 +127,22 @@ namespace WinFormsUI.Version
             Controls.Add(buttonUpdate);
             Controls.Add(buttonAdd);
             Name = "FormVersion";
-            Text = "Version Management";
+            Text = "Versiyon Yönetimi";
             ((System.ComponentModel.ISupportInitialize)dgwVersion).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            dgwVersion.Size = new Size(ClientSize.Width - 24, ClientSize.Height - 145);
+
+            buttonAdd.Location = new Point(dgwVersion.Location.X, dgwVersion.Location.Y - 50);
+            buttonUpdate.Location = new Point(dgwVersion.Location.X + dgwVersion.Width / 2 - buttonUpdate.Width / 2, dgwVersion.Location.Y - 50); 
+            buttonDelete.Location = new Point(dgwVersion.Location.X + dgwVersion.Width - buttonDelete.Width, dgwVersion.Location.Y - 50);
+        }
+
 
         #endregion
 

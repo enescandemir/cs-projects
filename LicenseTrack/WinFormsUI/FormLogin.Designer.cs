@@ -35,8 +35,8 @@ namespace WinFormsUI
             txtEmail.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtEmail.Hint = "Email";
             txtEmail.LeadingIcon = null;
-            txtEmail.Location = new Point(260, 100);
-            txtEmail.MaxLength = 32767;
+            txtEmail.Location = new Point(184, 124);
+            txtEmail.MaxLength = 50;
             txtEmail.MouseState = MaterialSkin.MouseState.OUT;
             txtEmail.Multiline = false;
             txtEmail.Name = "txtEmail";
@@ -53,16 +53,15 @@ namespace WinFormsUI
             txtPassword.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtPassword.Hint = "Şifre";
             txtPassword.LeadingIcon = null;
-            txtPassword.Location = new Point(260, 170);
-            txtPassword.MaxLength = 32767;
+            txtPassword.Location = new Point(184, 193);
+            txtPassword.MaxLength = 50;
             txtPassword.MouseState = MaterialSkin.MouseState.OUT;
             txtPassword.Multiline = false;
             txtPassword.Name = "txtPassword";
-            txtPassword.Password = true;
             txtPassword.Size = new Size(280, 50);
             txtPassword.TabIndex = 1;
             txtPassword.Text = "";
-            txtPassword.TrailingIcon = eyeIcon.ToBitmap(); // Şifre göster ikonu başlangıçta ekleniyor
+            txtPassword.TrailingIcon = null;
             txtPassword.TrailingIconClick += TxtPassword_TrailingIconClick;
             // 
             // btnLogin
@@ -72,7 +71,7 @@ namespace WinFormsUI
             btnLogin.Depth = 0;
             btnLogin.HighEmphasis = true;
             btnLogin.Icon = null;
-            btnLogin.Location = new Point(260, 240);
+            btnLogin.Location = new Point(197, 273);
             btnLogin.Margin = new Padding(4, 6, 4, 6);
             btnLogin.MouseState = MaterialSkin.MouseState.HOVER;
             btnLogin.Name = "btnLogin";
@@ -91,12 +90,12 @@ namespace WinFormsUI
             btnRegister.Depth = 0;
             btnRegister.HighEmphasis = true;
             btnRegister.Icon = null;
-            btnRegister.Location = new Point(451, 240);
+            btnRegister.Location = new Point(362, 273);
             btnRegister.Margin = new Padding(4, 6, 4, 6);
             btnRegister.MouseState = MaterialSkin.MouseState.HOVER;
             btnRegister.Name = "btnRegister";
             btnRegister.NoAccentTextColor = Color.Empty;
-            btnRegister.Size = new Size(89, 36);
+            btnRegister.Size = new Size(84, 36);
             btnRegister.TabIndex = 3;
             btnRegister.Text = "Kayıt Ol";
             btnRegister.Type = MaterialButton.MaterialButtonType.Contained;
@@ -116,6 +115,20 @@ namespace WinFormsUI
             Text = "Giriş Yap";
             ResumeLayout(false);
             PerformLayout();
+        }
+
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            int formCenterY = ClientSize.Height / 2;
+            int startingY = formCenterY - 100;
+
+            txtEmail.Location = new Point((ClientSize.Width - txtEmail.Width) / 2, startingY + 30);
+            txtPassword.Location = new Point((ClientSize.Width - txtPassword.Width) / 2, startingY + 100);
+
+            btnLogin.Location = new Point((ClientSize.Width - (btnLogin.Width + btnRegister.Width + 20)) / 2, startingY + 180); 
+            btnRegister.Location = new Point(btnLogin.Location.X + btnLogin.Width + 20, startingY + 180);
         }
 
         #endregion

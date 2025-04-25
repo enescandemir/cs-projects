@@ -45,7 +45,7 @@ namespace WinFormsUI.License
             buttonAdd.NoAccentTextColor = Color.Empty;
             buttonAdd.Size = new Size(64, 36);
             buttonAdd.TabIndex = 2;
-            buttonAdd.Text = "Add";
+            buttonAdd.Text = "Ekle";
             buttonAdd.Type = MaterialButton.MaterialButtonType.Contained;
             buttonAdd.UseAccentColor = false;
             buttonAdd.UseVisualStyleBackColor = true;
@@ -65,7 +65,7 @@ namespace WinFormsUI.License
             buttonUpdate.NoAccentTextColor = Color.Empty;
             buttonUpdate.Size = new Size(77, 36);
             buttonUpdate.TabIndex = 3;
-            buttonUpdate.Text = "Update";
+            buttonUpdate.Text = "Güncelle";
             buttonUpdate.Type = MaterialButton.MaterialButtonType.Contained;
             buttonUpdate.UseAccentColor = false;
             buttonUpdate.UseVisualStyleBackColor = true;
@@ -85,7 +85,7 @@ namespace WinFormsUI.License
             buttonDelete.NoAccentTextColor = Color.Empty;
             buttonDelete.Size = new Size(73, 36);
             buttonDelete.TabIndex = 4;
-            buttonDelete.Text = "Delete";
+            buttonDelete.Text = "Sil";
             buttonDelete.Type = MaterialButton.MaterialButtonType.Contained;
             buttonDelete.UseAccentColor = false;
             buttonDelete.UseVisualStyleBackColor = true;
@@ -130,11 +130,22 @@ namespace WinFormsUI.License
             Controls.Add(buttonUpdate);
             Controls.Add(buttonAdd);
             Name = "FormLicense";
-            Text = "License Management";
+            Text = "Lisans Detayları";
             ((System.ComponentModel.ISupportInitialize)dgwLicense).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+
+            dgwLicense.Size = new Size(ClientSize.Width - 24, ClientSize.Height - 145);
+
+            buttonAdd.Location = new Point(dgwLicense.Location.X, dgwLicense.Location.Y - 50); 
+            buttonUpdate.Location = new Point(dgwLicense.Location.X + dgwLicense.Width / 2 - buttonUpdate.Width / 2, dgwLicense.Location.Y - 50); 
+            buttonDelete.Location = new Point(dgwLicense.Location.X + dgwLicense.Width - buttonDelete.Width, dgwLicense.Location.Y - 50); 
+        }
+
 
         #endregion
 

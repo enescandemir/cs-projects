@@ -37,14 +37,8 @@ namespace WinFormsUI
             txtFirstName.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtFirstName.Hint = "Ad";
             txtFirstName.LeadingIcon = null;
-            txtFirstName.Location = new Point(260, 95);
-            txtFirstName.MaxLength = 32767;
-            txtFirstName.MouseState = MaterialSkin.MouseState.OUT;
-            txtFirstName.Multiline = false;
-            txtFirstName.Name = "txtFirstName";
             txtFirstName.Size = new Size(280, 50);
             txtFirstName.TabIndex = 0;
-            txtFirstName.Text = "";
             txtFirstName.TrailingIcon = null;
             // 
             // txtLastName
@@ -55,14 +49,8 @@ namespace WinFormsUI
             txtLastName.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtLastName.Hint = "Soyad";
             txtLastName.LeadingIcon = null;
-            txtLastName.Location = new Point(260, 166);
-            txtLastName.MaxLength = 32767;
-            txtLastName.MouseState = MaterialSkin.MouseState.OUT;
-            txtLastName.Multiline = false;
-            txtLastName.Name = "txtLastName";
             txtLastName.Size = new Size(280, 50);
             txtLastName.TabIndex = 1;
-            txtLastName.Text = "";
             txtLastName.TrailingIcon = null;
             // 
             // txtEmail
@@ -73,37 +61,23 @@ namespace WinFormsUI
             txtEmail.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtEmail.Hint = "Email";
             txtEmail.LeadingIcon = null;
-            txtEmail.Location = new Point(260, 234);
-            txtEmail.MaxLength = 32767;
-            txtEmail.MouseState = MaterialSkin.MouseState.OUT;
-            txtEmail.Multiline = false;
-            txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(280, 50);
             txtEmail.TabIndex = 2;
-            txtEmail.Text = "";
             txtEmail.TrailingIcon = null;
             // 
             // txtPassword
             // 
-            // txtPassword
             txtPassword.AnimateReadOnly = false;
             txtPassword.BorderStyle = BorderStyle.None;
             txtPassword.Depth = 0;
             txtPassword.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtPassword.Hint = "Şifre";
             txtPassword.LeadingIcon = null;
-            txtPassword.Location = new Point(260, 305); 
-            txtPassword.MaxLength = 32767;
-            txtPassword.MouseState = MaterialSkin.MouseState.OUT;
-            txtPassword.Multiline = false;
-            txtPassword.Name = "txtPassword";
             txtPassword.Password = true;
             txtPassword.Size = new Size(280, 50);
             txtPassword.TabIndex = 3;
-            txtPassword.Text = "";
             txtPassword.TrailingIcon = eyeIcon.ToBitmap();
             txtPassword.TrailingIconClick += TxtPassword_TrailingIconClick;
-
             // 
             // btnRegister
             // 
@@ -112,16 +86,9 @@ namespace WinFormsUI
             btnRegister.Depth = 0;
             btnRegister.HighEmphasis = true;
             btnRegister.Icon = null;
-            btnRegister.Location = new Point(260, 386);
-            btnRegister.Margin = new Padding(4, 6, 4, 6);
-            btnRegister.MouseState = MaterialSkin.MouseState.HOVER;
-            btnRegister.Name = "btnRegister";
-            btnRegister.NoAccentTextColor = Color.Empty;
             btnRegister.Size = new Size(84, 36);
             btnRegister.TabIndex = 4;
             btnRegister.Text = "Kayıt Ol";
-            btnRegister.Type = MaterialButton.MaterialButtonType.Contained;
-            btnRegister.UseAccentColor = false;
             btnRegister.Click += btnRegister_Click;
             // 
             // btnReturn
@@ -131,16 +98,9 @@ namespace WinFormsUI
             btnReturn.Depth = 0;
             btnReturn.HighEmphasis = true;
             btnReturn.Icon = null;
-            btnReturn.Location = new Point(456, 386);
-            btnReturn.Margin = new Padding(4, 6, 4, 6);
-            btnReturn.MouseState = MaterialSkin.MouseState.HOVER;
-            btnReturn.Name = "btnReturn";
-            btnReturn.NoAccentTextColor = Color.Empty;
             btnReturn.Size = new Size(84, 36);
             btnReturn.TabIndex = 5;
             btnReturn.Text = "Geri";
-            btnReturn.Type = MaterialButton.MaterialButtonType.Contained;
-            btnReturn.UseAccentColor = false;
             btnReturn.Click += btnReturn_Click;
             // 
             // FormRegister
@@ -154,11 +114,26 @@ namespace WinFormsUI
             Controls.Add(txtEmail);
             Controls.Add(txtLastName);
             Controls.Add(txtFirstName);
-            Name = "FormRegister";
             Text = "Kayıt Ol";
             ResumeLayout(false);
             PerformLayout();
         }
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            int formCenterY = ClientSize.Height / 2;
+            int startingY = formCenterY - 140; 
+
+            txtFirstName.Location = new Point((ClientSize.Width - txtFirstName.Width) / 2, startingY);
+            txtLastName.Location = new Point((ClientSize.Width - txtLastName.Width) / 2, txtFirstName.Location.Y + 70);
+            txtEmail.Location = new Point((ClientSize.Width - txtEmail.Width) / 2, txtLastName.Location.Y + 70);
+            txtPassword.Location = new Point((ClientSize.Width - txtPassword.Width) / 2, txtEmail.Location.Y + 70);
+
+            btnRegister.Location = new Point((ClientSize.Width - (btnRegister.Width + btnReturn.Width + 20)) / 2, txtPassword.Location.Y + 80);
+            btnReturn.Location = new Point(btnRegister.Location.X + btnRegister.Width + 20, btnRegister.Location.Y);
+        }
+
 
         #endregion
 

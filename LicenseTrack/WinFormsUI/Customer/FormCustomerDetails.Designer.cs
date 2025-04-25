@@ -35,7 +35,7 @@ namespace WinFormsUI.Customer
             txtName.BorderStyle = BorderStyle.None;
             txtName.Depth = 0;
             txtName.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtName.Hint = "Name";
+            txtName.Hint = "Müşteri Adı";
             txtName.LeadingIcon = null;
             txtName.Location = new Point(46, 85);
             txtName.MaxLength = 50;
@@ -53,7 +53,7 @@ namespace WinFormsUI.Customer
             txtDBName.BorderStyle = BorderStyle.None;
             txtDBName.Depth = 0;
             txtDBName.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtDBName.Hint = "Database Name";
+            txtDBName.Hint = "Müşteri Veritabanı Adı";
             txtDBName.LeadingIcon = null;
             txtDBName.Location = new Point(46, 141);
             txtDBName.MaxLength = 50;
@@ -71,7 +71,7 @@ namespace WinFormsUI.Customer
             txtAddress.BorderStyle = BorderStyle.None;
             txtAddress.Depth = 0;
             txtAddress.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtAddress.Hint = "Address";
+            txtAddress.Hint = "Müşteri Adresi";
             txtAddress.LeadingIcon = null;
             txtAddress.Location = new Point(46, 197);
             txtAddress.MaxLength = 100;
@@ -89,7 +89,7 @@ namespace WinFormsUI.Customer
             txtPort.BorderStyle = BorderStyle.None;
             txtPort.Depth = 0;
             txtPort.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtPort.Hint = "Port";
+            txtPort.Hint = "Müşteri Portu";
             txtPort.LeadingIcon = null;
             txtPort.Location = new Point(46, 253);
             txtPort.MaxLength = 10;
@@ -115,7 +115,7 @@ namespace WinFormsUI.Customer
             btnSave.NoAccentTextColor = Color.Empty;
             btnSave.Size = new Size(64, 36);
             btnSave.TabIndex = 5;
-            btnSave.Text = "Save";
+            btnSave.Text = "Kaydet";
             btnSave.Type = MaterialButton.MaterialButtonType.Contained;
             btnSave.UseAccentColor = false;
             btnSave.Click += btnSave_Click;
@@ -134,7 +134,7 @@ namespace WinFormsUI.Customer
             btnCancel.NoAccentTextColor = Color.Empty;
             btnCancel.Size = new Size(77, 36);
             btnCancel.TabIndex = 6;
-            btnCancel.Text = "Cancel";
+            btnCancel.Text = "İptal";
             btnCancel.Type = MaterialButton.MaterialButtonType.Contained;
             btnCancel.UseAccentColor = false;
             btnCancel.Click += btnCancel_Click;
@@ -151,9 +151,37 @@ namespace WinFormsUI.Customer
             Controls.Add(btnSave);
             Controls.Add(btnCancel);
             Name = "FormCustomerDetails";
-            Text = "Customer Details";
+            Text = "Müşteri Detayları";
             ResumeLayout(false);
             PerformLayout();
+        }
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+
+            int formWidth = ClientSize.Width;
+            int formHeight = ClientSize.Height;
+
+            txtName.Location = new Point(46, 85);
+            txtName.Size = new Size(formWidth - 92, txtName.Height); 
+
+            txtDBName.Location = new Point(46, txtName.Bottom + 10);
+            txtDBName.Size = new Size(formWidth - 92, txtDBName.Height);
+
+            txtAddress.Location = new Point(46, txtDBName.Bottom + 10);
+            txtAddress.Size = new Size(formWidth - 92, txtAddress.Height);
+
+            txtPort.Location = new Point(46, txtAddress.Bottom + 10);
+            txtPort.Size = new Size(formWidth - 92, txtPort.Height);
+
+            btnSave.Location = new Point(46, txtPort.Bottom + 20);
+            btnCancel.Location = new Point(formWidth - btnCancel.Width - 46, txtPort.Bottom + 20);
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            OnResize(EventArgs.Empty); // Form yüklendiğinde kontrolleri yeniden düzenle
         }
 
         #endregion

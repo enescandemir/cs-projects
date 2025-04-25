@@ -41,7 +41,7 @@ namespace WinFormsUI.Version
             cmbType.DropDownWidth = 121;
             cmbType.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
             cmbType.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cmbType.Hint = "Select Type";
+            cmbType.Hint = "Versiyon Tipi Seçin";
             cmbType.IntegralHeight = false;
             cmbType.ItemHeight = 43;
             cmbType.Location = new Point(48, 82);
@@ -58,7 +58,7 @@ namespace WinFormsUI.Version
             txtName.BorderStyle = BorderStyle.None;
             txtName.Depth = 0;
             txtName.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtName.Hint = "Name";
+            txtName.Hint = "Ad";
             txtName.LeadingIcon = null;
             txtName.Location = new Point(48, 137);
             txtName.MaxLength = 32767;
@@ -76,7 +76,7 @@ namespace WinFormsUI.Version
             txtNumber.BorderStyle = BorderStyle.None;
             txtNumber.Depth = 0;
             txtNumber.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            txtNumber.Hint = "Number";
+            txtNumber.Hint = "Numara";
             txtNumber.LeadingIcon = null;
             txtNumber.Location = new Point(48, 193);
             txtNumber.MaxLength = 32767;
@@ -97,8 +97,8 @@ namespace WinFormsUI.Version
             txtDescription.Depth = 0;
             txtDescription.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtDescription.HideSelection = true;
-            txtDescription.Hint = "Description";
-            txtDescription.Location = new Point(48, 249);
+            txtDescription.Hint = "Açıklama";
+            txtDescription.Location = new Point(48, 304);
             txtDescription.MaxLength = 32767;
             txtDescription.MouseState = MaterialSkin.MouseState.OUT;
             txtDescription.Name = "txtDescription";
@@ -126,10 +126,10 @@ namespace WinFormsUI.Version
             cmbDependentID.DropDownWidth = 121;
             cmbDependentID.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
             cmbDependentID.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cmbDependentID.Hint = "Select Dependent ID";
+            cmbDependentID.Hint = "Bağımlı ID'sini seçin(varsa)";
             cmbDependentID.IntegralHeight = false;
             cmbDependentID.ItemHeight = 43;
-            cmbDependentID.Location = new Point(48, 366);
+            cmbDependentID.Location = new Point(48, 249);
             cmbDependentID.MaxDropDownItems = 4;
             cmbDependentID.MouseState = MaterialSkin.MouseState.OUT;
             cmbDependentID.Name = "cmbDependentID";
@@ -151,7 +151,7 @@ namespace WinFormsUI.Version
             btnCancel.NoAccentTextColor = Color.Empty;
             btnCancel.Size = new Size(77, 36);
             btnCancel.TabIndex = 17;
-            btnCancel.Text = "Cancel";
+            btnCancel.Text = "İptal";
             btnCancel.Type = MaterialButton.MaterialButtonType.Contained;
             btnCancel.UseAccentColor = false;
             btnCancel.Click += btnCancel_Click;
@@ -170,7 +170,7 @@ namespace WinFormsUI.Version
             btnSave.NoAccentTextColor = Color.Empty;
             btnSave.Size = new Size(64, 36);
             btnSave.TabIndex = 18;
-            btnSave.Text = "Save";
+            btnSave.Text = "Kaydet";
             btnSave.Type = MaterialButton.MaterialButtonType.Contained;
             btnSave.UseAccentColor = false;
             btnSave.Click += btnSave_Click;
@@ -188,10 +188,40 @@ namespace WinFormsUI.Version
             Controls.Add(txtName);
             Controls.Add(cmbType);
             Name = "FormVersionDetails";
-            Text = "Version Details";
+            Text = "Versiyon Detayları";
             ResumeLayout(false);
             PerformLayout();
         }
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            int formWidth = ClientSize.Width;
+            int formHeight = ClientSize.Height;
+
+            cmbType.Location = new Point(48, 82);
+            cmbType.Size = new Size(formWidth - 96, cmbType.Height);
+
+            txtName.Location = new Point(48, cmbType.Bottom + 10);
+            txtName.Size = new Size(formWidth - 96, txtName.Height);
+
+            txtNumber.Location = new Point(48, txtName.Bottom + 10);
+            txtNumber.Size = new Size(formWidth - 96, txtNumber.Height);
+
+            cmbDependentID.Location = new Point(48, txtNumber.Bottom + 10);
+            cmbDependentID.Size = new Size(formWidth - 96, cmbDependentID.Height);
+
+            txtDescription.Location = new Point(48, cmbDependentID.Bottom + 10);
+            txtDescription.Size = new Size(formWidth - 96, formHeight - txtDescription.Top - 100);
+
+            btnSave.Location = new Point(48, txtDescription.Bottom + 10);
+            btnCancel.Location = new Point(btnSave.Right + 10, txtDescription.Bottom + 10);
+        }
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            OnResize(EventArgs.Empty);
+        }
+
 
         #endregion
 

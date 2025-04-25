@@ -22,10 +22,14 @@ namespace WinFormsUI
         public FormRegister()
         {
             InitializeComponent();
+            this.Location = new Point(
+            (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2,
+            (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2
+            );
             this.FormClosing += FormRegister_FormClosing;
 
             var configuration = new ConfigurationBuilder()
-                .SetBasePath(@"C:\Users\bilal\source\repos\LicenseTrack\WebAPI") // WebAPI dizin yolu
+                .SetBasePath(@"C:\Users\bilal\source\repos\LicenseTrack\WebAPI")
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .Build();
 
@@ -63,6 +67,7 @@ namespace WinFormsUI
         {
             _returningToLogin = true;
             FormLogin loginForm = new FormLogin();
+            loginForm.StartPosition = FormStartPosition.CenterScreen;
             loginForm.Show();
             this.Close();
         }

@@ -41,7 +41,7 @@ namespace WinFormsUI.License
             cmbCustomer.DropDownWidth = 121;
             cmbCustomer.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
             cmbCustomer.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cmbCustomer.Hint = "Select Customer";
+            cmbCustomer.Hint = "Müşteri Seçin";
             cmbCustomer.IntegralHeight = false;
             cmbCustomer.ItemHeight = 43;
             cmbCustomer.Location = new Point(46, 82);
@@ -63,7 +63,7 @@ namespace WinFormsUI.License
             cmbType.DropDownWidth = 121;
             cmbType.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
             cmbType.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            cmbType.Hint = "Select Type";
+            cmbType.Hint = "Lisans Tipi Seçin";
             cmbType.IntegralHeight = false;
             cmbType.ItemHeight = 43;
             cmbType.Location = new Point(46, 137);
@@ -99,7 +99,7 @@ namespace WinFormsUI.License
             txtDescription.Depth = 0;
             txtDescription.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             txtDescription.HideSelection = true;
-            txtDescription.Hint = "Description";
+            txtDescription.Hint = "Açıklama";
             txtDescription.Location = new Point(46, 258);
             txtDescription.MaxLength = 32767;
             txtDescription.MouseState = MaterialSkin.MouseState.OUT;
@@ -131,7 +131,7 @@ namespace WinFormsUI.License
             btnSave.NoAccentTextColor = Color.Empty;
             btnSave.Size = new Size(64, 36);
             btnSave.TabIndex = 6;
-            btnSave.Text = "Save";
+            btnSave.Text = "Kaydet";
             btnSave.Type = MaterialButton.MaterialButtonType.Contained;
             btnSave.UseAccentColor = false;
             btnSave.Click += btnSave_Click;
@@ -150,7 +150,7 @@ namespace WinFormsUI.License
             btnCancel.NoAccentTextColor = Color.Empty;
             btnCancel.Size = new Size(77, 36);
             btnCancel.TabIndex = 7;
-            btnCancel.Text = "Cancel";
+            btnCancel.Text = "İptal";
             btnCancel.Type = MaterialButton.MaterialButtonType.Contained;
             btnCancel.UseAccentColor = false;
             btnCancel.Click += btnCancel_Click;
@@ -168,9 +168,40 @@ namespace WinFormsUI.License
             Controls.Add(btnSave);
             Controls.Add(btnCancel);
             Name = "FormLicenseDetails";
-            Text = "License Details";
+            Text = "Lisans Detayları";
             ResumeLayout(false);
             PerformLayout();
+        }
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+
+            int formWidth = ClientSize.Width;
+            int formHeight = ClientSize.Height;
+
+            cmbCustomer.Location = new Point(46, 82);
+            cmbCustomer.Size = new Size(formWidth - 92, cmbCustomer.Height);
+
+            cmbType.Location = new Point(46, cmbCustomer.Bottom + 10);
+            cmbType.Size = new Size(formWidth - 92, cmbType.Height);
+
+            dtpStartDate.Location = new Point(46, cmbType.Bottom + 10);
+            dtpStartDate.Size = new Size(formWidth - 92, dtpStartDate.Height);
+
+            dtpEndDate.Location = new Point(46, dtpStartDate.Bottom + 10);
+            dtpEndDate.Size = new Size(formWidth - 92, dtpEndDate.Height);
+
+            txtDescription.Location = new Point(46, dtpEndDate.Bottom + 10);
+            txtDescription.Size = new Size(formWidth - 92, formHeight - txtDescription.Top - 70);
+
+            btnSave.Location = new Point(46, txtDescription.Bottom + 10); 
+            btnCancel.Location = new Point(formWidth - btnCancel.Width - 46, txtDescription.Bottom + 10);
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            OnResize(EventArgs.Empty);
         }
 
         #endregion

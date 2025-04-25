@@ -5,7 +5,8 @@ using System;
 using System.Linq;
 using System.Windows.Forms;
 using Core.Utilities.Session;
-using System.Security.Claims; 
+using System.Security.Claims;
+using Entities.Concrete.DTOs;
 
 namespace WinFormsUI.ProgramLicense
 {
@@ -23,8 +24,18 @@ namespace WinFormsUI.ProgramLicense
         {
             try
             {
-                var programLicenses = programLicenseManager.GetAll();
+                var programLicenses = programLicenseManager.GetAllWithNames();
                 dgwProgramLicense.DataSource = programLicenses;
+
+                dgwProgramLicense.Columns["ProgramLicenseID"].HeaderText = "Program-Lisans ID";
+                dgwProgramLicense.Columns["ProgramName"].HeaderText = "Program Adı";
+                dgwProgramLicense.Columns["CustomerName"].HeaderText = "Müşteri Adı";
+                dgwProgramLicense.Columns["LicenseType"].HeaderText = "Tip";
+                dgwProgramLicense.Columns["LicenseStartDate"].HeaderText = "Başlangıç Tarihi";
+                dgwProgramLicense.Columns["LicenseEndDate"].HeaderText = "Bitiş Tarihi";
+                dgwProgramLicense.Columns["LicenseDescription"].HeaderText = "Açıklama";
+
+                dgwProgramLicense.CellFormatting += DgwProgramLicense_CellFormatting;
 
                 if (programLicenses.Count == 0)
                 {
@@ -37,6 +48,22 @@ namespace WinFormsUI.ProgramLicense
             }
         }
 
+
+        private void DgwProgramLicense_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgwProgramLicense.Columns[e.ColumnIndex].Name == "LicenseType" && e.Value != null)
+            {
+                e.Value = e.Value.ToString() == "1" ? "Demo" :
+                          e.Value.ToString() == "2" ? "6 Aylık" : "Bilinmeyen";
+                e.FormattingApplied = true;
+            }
+        }
+
+
+
+
+
+
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             if (!IsAdmin())
@@ -48,7 +75,7 @@ namespace WinFormsUI.ProgramLicense
             FormProgramLicenseDetails form = new FormProgramLicenseDetails();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                dgwProgramLicense.DataSource = programLicenseManager.GetAll();
+                RefreshDataGridView();
             }
         }
 
@@ -66,14 +93,22 @@ namespace WinFormsUI.ProgramLicense
                 return;
             }
 
-            Entities.Concrete.ProgramLicense selectedProgramLicense = (Entities.Concrete.ProgramLicense)dgwProgramLicense.CurrentRow.DataBoundItem;
+            ProgramLicenseDto selectedLicenseDTO = (ProgramLicenseDto)dgwProgramLicense.CurrentRow.DataBoundItem;
 
-            FormProgramLicenseDetails form = new FormProgramLicenseDetails(selectedProgramLicense);
+            var originalProgramLicense = programLicenseManager.GetByProgramLicenseId(selectedLicenseDTO.ProgramLicenseID).FirstOrDefault();
+
+            if (originalProgramLicense == null)
+            {
+                MessageBox.Show("Seçilen program lisansı bulunamadı.");
+                return;
+            }
+            FormProgramLicenseDetails form = new FormProgramLicenseDetails(originalProgramLicense);
             if (form.ShowDialog() == DialogResult.OK)
             {
-                dgwProgramLicense.DataSource = programLicenseManager.GetAll();
+                RefreshDataGridView();
             }
         }
+
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
@@ -89,19 +124,28 @@ namespace WinFormsUI.ProgramLicense
                 return;
             }
 
-            Entities.Concrete.ProgramLicense selectedProgramLicense = (Entities.Concrete.ProgramLicense)dgwProgramLicense.CurrentRow.DataBoundItem;
+            ProgramLicenseDto selectedProgramLicenseDto = (ProgramLicenseDto)dgwProgramLicense.CurrentRow.DataBoundItem;
+
+            var originalProgramLicense = programLicenseManager.GetByProgramLicenseId(selectedProgramLicenseDto.ProgramLicenseID).FirstOrDefault();
+
+            if (originalProgramLicense == null)
+            {
+                MessageBox.Show("Seçilen program lisansı bulunamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             DialogResult dialogResult = MessageBox.Show(
-                $"{selectedProgramLicense.ProgramID} numaralı program lisansını silmek istediğinize emin misiniz?",
+                $"{selectedProgramLicenseDto.ProgramName} adlı program lisansını ve müşteri bilgilerini silmek istediğinize emin misiniz?",
                 "Silme Onayı",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
             if (dialogResult == DialogResult.Yes)
             {
-                programLicenseManager.Delete(selectedProgramLicense);
-                MessageBox.Show("Program lisansı başarıyla silindi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dgwProgramLicense.DataSource = programLicenseManager.GetAll();
+                programLicenseManager.Delete(originalProgramLicense);
+                MessageBox.Show("Program lisansı ve ilişkili bilgiler başarıyla silindi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                RefreshDataGridView();
             }
         }
 
@@ -129,5 +173,12 @@ namespace WinFormsUI.ProgramLicense
                 return false;
             }
         }
+        private void RefreshDataGridView()
+        {
+            var programLicenses = programLicenseManager.GetAllWithNames();
+            dgwProgramLicense.DataSource = null;
+            dgwProgramLicense.DataSource = programLicenses; 
+        }
+
     }
 }

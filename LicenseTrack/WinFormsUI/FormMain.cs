@@ -15,8 +15,11 @@ namespace WinFormsUI
         public FormMain()
         {
             InitializeComponent();
-            labelUserInfo.Text = $"Hoþ geldiniz, {Session.UserName}!\nRolünüz: {Session.UserRole}";
-
+            this.WindowState = FormWindowState.Maximized;
+            this.Location = new Point(
+            (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2,
+            (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2
+            );
             this.FormClosing += (s, e) => Application.Exit();
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
@@ -36,6 +39,9 @@ namespace WinFormsUI
 
         private void OpenForm(Form form)
         {
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.WindowState = FormWindowState.Maximized;       
+            form.FormBorderStyle = FormBorderStyle.None;       
             form.Show();
         }
 

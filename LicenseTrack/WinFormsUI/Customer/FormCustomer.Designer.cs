@@ -72,7 +72,7 @@ namespace WinFormsUI.Customer
             buttonAdd.NoAccentTextColor = Color.Empty;
             buttonAdd.Size = new Size(64, 36);
             buttonAdd.TabIndex = 2;
-            buttonAdd.Text = "Add";
+            buttonAdd.Text = "Ekle";
             buttonAdd.Type = MaterialButton.MaterialButtonType.Contained;
             buttonAdd.UseAccentColor = false;
             buttonAdd.Click += buttonAdd_Click;
@@ -91,7 +91,7 @@ namespace WinFormsUI.Customer
             buttonDelete.NoAccentTextColor = Color.Empty;
             buttonDelete.Size = new Size(73, 36);
             buttonDelete.TabIndex = 1;
-            buttonDelete.Text = "Delete";
+            buttonDelete.Text = "Sil";
             buttonDelete.Type = MaterialButton.MaterialButtonType.Contained;
             buttonDelete.UseAccentColor = false;
             buttonDelete.Click += buttonDelete_Click;
@@ -110,25 +110,33 @@ namespace WinFormsUI.Customer
             buttonUpdate.NoAccentTextColor = Color.Empty;
             buttonUpdate.Size = new Size(77, 36);
             buttonUpdate.TabIndex = 0;
-            buttonUpdate.Text = "Update";
+            buttonUpdate.Text = "Güncelle";
             buttonUpdate.Type = MaterialButton.MaterialButtonType.Contained;
             buttonUpdate.UseAccentColor = false;
             buttonUpdate.Click += buttonUpdate_Click;
             // 
             // FormCustomer
-            // 
+            //
             ClientSize = new Size(707, 447);
             Controls.Add(buttonUpdate);
             Controls.Add(buttonDelete);
             Controls.Add(buttonAdd);
             Controls.Add(dgwCustomers);
             Name = "FormCustomer";
-            Text = "Customer Management";
+            Text = "Müşteri Yönetimi";
             ((System.ComponentModel.ISupportInitialize)dgwCustomers).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            dgwCustomers.Size = new Size(ClientSize.Width - 24, ClientSize.Height - 145);
 
+            buttonAdd.Location = new Point(dgwCustomers.Location.X, dgwCustomers.Location.Y - 50); 
+            buttonUpdate.Location = new Point(dgwCustomers.Location.X + dgwCustomers.Width / 2 - buttonUpdate.Width / 2, dgwCustomers.Location.Y - 50);
+            buttonDelete.Location = new Point(dgwCustomers.Location.X + dgwCustomers.Width - buttonDelete.Width, dgwCustomers.Location.Y - 50); 
+        }
         #endregion
 
         private System.Windows.Forms.DataGridView dgwCustomers;

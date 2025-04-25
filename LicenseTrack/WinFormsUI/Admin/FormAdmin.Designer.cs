@@ -46,7 +46,7 @@ namespace WinFormsUI.License
             buttonSetNewPassword.NoAccentTextColor = Color.Empty;
             buttonSetNewPassword.Size = new Size(146, 36);
             buttonSetNewPassword.TabIndex = 1;
-            buttonSetNewPassword.Text = "Set New Password";
+            buttonSetNewPassword.Text = "Yeni Şifre Ata";
             buttonSetNewPassword.Type = MaterialButton.MaterialButtonType.Contained;
             buttonSetNewPassword.UseAccentColor = false;
             buttonSetNewPassword.Click += buttonSetNewPassword_Click;
@@ -65,7 +65,7 @@ namespace WinFormsUI.License
             buttonToggleAdmin.NoAccentTextColor = Color.Empty;
             buttonToggleAdmin.Size = new Size(128, 36);
             buttonToggleAdmin.TabIndex = 2;
-            buttonToggleAdmin.Text = "Toggle Admin";
+            buttonToggleAdmin.Text = "Admin Yetkisini Değiştir";
             buttonToggleAdmin.Type = MaterialButton.MaterialButtonType.Contained;
             buttonToggleAdmin.UseAccentColor = false;
             buttonToggleAdmin.Click += buttonToggleAdmin_Click;
@@ -84,7 +84,7 @@ namespace WinFormsUI.License
             buttonDeleteUser.NoAccentTextColor = Color.Empty;
             buttonDeleteUser.Size = new Size(113, 36);
             buttonDeleteUser.TabIndex = 3;
-            buttonDeleteUser.Text = "Delete User";
+            buttonDeleteUser.Text = "Üyeyi Sil";
             buttonDeleteUser.Type = MaterialButton.MaterialButtonType.Contained;
             buttonDeleteUser.UseAccentColor = false;
             buttonDeleteUser.Click += buttonDeleteUser_Click;
@@ -127,11 +127,23 @@ namespace WinFormsUI.License
             Controls.Add(buttonToggleAdmin);
             Controls.Add(buttonSetNewPassword);
             Name = "FormAdmin";
-            Text = "Admin Panel";
+            Text = "Admin Paneli";
             ((System.ComponentModel.ISupportInitialize)dgwUser).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+
+            dgwUser.Size = new Size(ClientSize.Width - 24, ClientSize.Height - 145);
+
+            buttonSetNewPassword.Location = new Point(dgwUser.Location.X, dgwUser.Location.Y - 50); 
+            buttonToggleAdmin.Location = new Point(dgwUser.Location.X + dgwUser.Width / 2 - buttonToggleAdmin.Width / 2, dgwUser.Location.Y - 50);
+            buttonDeleteUser.Location = new Point(dgwUser.Location.X + dgwUser.Width - buttonDeleteUser.Width, dgwUser.Location.Y - 50);
+        }
+
 
         #endregion
 

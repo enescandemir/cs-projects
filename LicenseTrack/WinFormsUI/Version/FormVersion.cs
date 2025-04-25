@@ -11,6 +11,7 @@ namespace WinFormsUI.Version
     public partial class FormVersion : MaterialForm
     {
         VersionManager versionManager = new VersionManager(new EfVersionDal());
+        UpdateTableManager updateTableManager = new UpdateTableManager(new EfUpdateTableDal());
 
         public FormVersion()
         {
@@ -25,16 +26,36 @@ namespace WinFormsUI.Version
                 var versions = versionManager.GetAll();
                 dgwVersion.DataSource = versions;
 
+                dgwVersion.Columns["VersionID"].HeaderText = "Versiyon ID";
+                dgwVersion.Columns["Type"].HeaderText = "Versiyon Tipi";
+                dgwVersion.Columns["Name"].HeaderText = "Adı";
+                dgwVersion.Columns["Number"].HeaderText = "Numarası";
+                dgwVersion.Columns["Description"].HeaderText = "Açıklama";
+                dgwVersion.Columns["DependentID"].HeaderText = "Bağlı Olduğu Versiyon ID";
+
                 if (versions.Count == 0)
                 {
                     MessageBox.Show("Veritabanında versiyon bilgisi bulunamadı.");
                 }
+
+                dgwVersion.CellFormatting += DgwVersion_CellFormatting;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Hata oluştu: " + ex.Message);
             }
         }
+
+        private void DgwVersion_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgwVersion.Columns[e.ColumnIndex].Name == "Type" && e.Value != null)
+            {
+                e.Value = e.Value.ToString() == "1" ? "Veritabanı" :
+                          e.Value.ToString() == "2" ? "Program" : "Bilinmeyen";
+                e.FormattingApplied = true;
+            }
+        }
+
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
@@ -90,18 +111,19 @@ namespace WinFormsUI.Version
             Entities.Concrete.Version selectedVersion = (Entities.Concrete.Version)dgwVersion.CurrentRow.DataBoundItem;
 
             DialogResult dialogResult = MessageBox.Show(
-                $"{selectedVersion.VersionID} numaralı versiyonu silmek istediğinize emin misiniz?",
+                $"{selectedVersion.VersionID} numaralı versiyonu ve bağlı tüm kayıtları silmek istediğinize emin misiniz?",
                 "Silme Onayı",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
             if (dialogResult == DialogResult.Yes)
             {
-                versionManager.Delete(selectedVersion);
-                MessageBox.Show("Versiyon başarıyla silindi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DeleteVersionWithDependencies(selectedVersion.VersionID);
                 dgwVersion.DataSource = versionManager.GetAll();
             }
         }
+
+
 
         private bool IsAdmin()
         {
@@ -126,5 +148,29 @@ namespace WinFormsUI.Version
                 return false;
             }
         }
+        private void DeleteVersionWithDependencies(int versionId)
+        {
+            var dependentVersions = versionManager.GetAll().Where(v => v.DependentID == versionId).ToList();
+            foreach (var dependentVersion in dependentVersions)
+            {
+                DeleteVersionWithDependencies(dependentVersion.VersionID);
+            }
+
+            var dependentUpdates = updateTableManager.GetAll().Where(u => u.VersionID == versionId).ToList();
+
+            foreach (var update in dependentUpdates)
+            {
+                updateTableManager.Delete(update);
+            }
+
+            var version = versionManager.GetByVersionId(versionId).FirstOrDefault();
+            if (version != null)
+            {
+                versionManager.Delete(version);
+                MessageBox.Show($"Versiyon ID {versionId} ve bağlı tüm kayıtlar başarıyla silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+
     }
 }

@@ -74,7 +74,7 @@ namespace WinFormsUI.UpdateTable
             buttonAdd.NoAccentTextColor = Color.Empty;
             buttonAdd.Size = new Size(64, 36);
             buttonAdd.TabIndex = 5;
-            buttonAdd.Text = "Add";
+            buttonAdd.Text = "Ekle";
             buttonAdd.Type = MaterialButton.MaterialButtonType.Contained;
             buttonAdd.UseAccentColor = false;
             buttonAdd.Click += buttonAdd_Click;
@@ -93,7 +93,7 @@ namespace WinFormsUI.UpdateTable
             buttonUpdate.NoAccentTextColor = Color.Empty;
             buttonUpdate.Size = new Size(77, 36);
             buttonUpdate.TabIndex = 6;
-            buttonUpdate.Text = "Update";
+            buttonUpdate.Text = "Güncelle";
             buttonUpdate.Type = MaterialButton.MaterialButtonType.Contained;
             buttonUpdate.UseAccentColor = false;
             buttonUpdate.Click += buttonUpdate_Click;
@@ -112,7 +112,7 @@ namespace WinFormsUI.UpdateTable
             buttonDelete.NoAccentTextColor = Color.Empty;
             buttonDelete.Size = new Size(73, 36);
             buttonDelete.TabIndex = 7;
-            buttonDelete.Text = "Delete";
+            buttonDelete.Text = "Sil";
             buttonDelete.Type = MaterialButton.MaterialButtonType.Contained;
             buttonDelete.UseAccentColor = false;
             buttonDelete.Click += buttonDelete_Click;
@@ -127,11 +127,21 @@ namespace WinFormsUI.UpdateTable
             Controls.Add(buttonUpdate);
             Controls.Add(buttonAdd);
             Name = "FormUpdateTable";
-            Text = "Update Management";
+            Text = "Güncelleme Yönetimi";
             ((System.ComponentModel.ISupportInitialize)dgwUpdateTable).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            dgwUpdateTable.Size = new Size(ClientSize.Width - 34, ClientSize.Height - 145);
+
+            buttonAdd.Location = new Point(dgwUpdateTable.Location.X, dgwUpdateTable.Location.Y - 50);
+            buttonUpdate.Location = new Point(dgwUpdateTable.Location.X + dgwUpdateTable.Width / 2 - buttonUpdate.Width / 2, dgwUpdateTable.Location.Y - 50); 
+            buttonDelete.Location = new Point(dgwUpdateTable.Location.X + dgwUpdateTable.Width - buttonDelete.Width, dgwUpdateTable.Location.Y - 50); 
+        }
+
 
         #endregion
 

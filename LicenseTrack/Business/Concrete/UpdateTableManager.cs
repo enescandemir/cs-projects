@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concrete;
+using Entities.Concrete.DTOs.Entities.Concrete.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +51,36 @@ namespace Business.Concrete
         {
             return _updateTableDal.GetAll(u => u.UpdateID == updateId);
         }
+        public List<UpdateTableDto> GetAllWithNames()
+        {
+            try
+            {
+                using (var context = new LicenseTrackContext()) 
+                {
+                    var updatesWithNames = from update in context.UpdateTable
+                                           join customer in context.Customer
+                                           on update.CustomerID equals customer.CustomerID
+                                           join version in context.Version
+                                           on update.VersionID equals version.VersionID
+                                           select new UpdateTableDto
+                                           {
+                                               UpdateID = update.UpdateID,
+                                               CustomerName = customer.Name, 
+                                               VersionName = version.Name,  
+                                               UpdateDate = update.UpdateDate,
+                                               Description = update.Description
+                                           };
+
+                    return updatesWithNames.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Güncelleme ve ad bilgileri birleştirilirken bir hata oluştu: " + ex.Message);
+                return new List<UpdateTableDto>();
+            }
+        }
+
     }
 }
 

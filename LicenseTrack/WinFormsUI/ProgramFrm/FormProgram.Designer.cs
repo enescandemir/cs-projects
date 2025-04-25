@@ -45,7 +45,7 @@ namespace WinFormsUI.ProgramFrm
             buttonAdd.NoAccentTextColor = Color.Empty;
             buttonAdd.Size = new Size(64, 36);
             buttonAdd.TabIndex = 3;
-            buttonAdd.Text = "Add";
+            buttonAdd.Text = "Ekle";
             buttonAdd.Type = MaterialButton.MaterialButtonType.Contained;
             buttonAdd.UseAccentColor = false;
             buttonAdd.UseVisualStyleBackColor = true;
@@ -65,7 +65,7 @@ namespace WinFormsUI.ProgramFrm
             buttonUpdate.NoAccentTextColor = Color.Empty;
             buttonUpdate.Size = new Size(77, 36);
             buttonUpdate.TabIndex = 4;
-            buttonUpdate.Text = "Update";
+            buttonUpdate.Text = "Güncelle";
             buttonUpdate.Type = MaterialButton.MaterialButtonType.Contained;
             buttonUpdate.UseAccentColor = false;
             buttonUpdate.UseVisualStyleBackColor = true;
@@ -85,7 +85,7 @@ namespace WinFormsUI.ProgramFrm
             buttonDelete.NoAccentTextColor = Color.Empty;
             buttonDelete.Size = new Size(73, 36);
             buttonDelete.TabIndex = 5;
-            buttonDelete.Text = "Delete";
+            buttonDelete.Text = "Sil";
             buttonDelete.Type = MaterialButton.MaterialButtonType.Contained;
             buttonDelete.UseAccentColor = false;
             buttonDelete.UseVisualStyleBackColor = true;
@@ -130,11 +130,21 @@ namespace WinFormsUI.ProgramFrm
             Controls.Add(buttonUpdate);
             Controls.Add(buttonAdd);
             Name = "FormProgram";
-            Text = "Program Management";
+            Text = "Program Yönetimi";
             ((System.ComponentModel.ISupportInitialize)dgwProgram).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            dgwProgram.Size = new Size(ClientSize.Width - 24, ClientSize.Height - 145);
+
+            buttonAdd.Location = new Point(dgwProgram.Location.X, dgwProgram.Location.Y - 50); 
+            buttonUpdate.Location = new Point(dgwProgram.Location.X + dgwProgram.Width / 2 - buttonUpdate.Width / 2, dgwProgram.Location.Y - 50); 
+            buttonDelete.Location = new Point(dgwProgram.Location.X + dgwProgram.Width - buttonDelete.Width, dgwProgram.Location.Y - 50);
+        }
+
 
         #endregion
 

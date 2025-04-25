@@ -7,12 +7,16 @@ using System;
 using System.Linq;
 using System.Windows.Forms;
 using Core.Utilities.Session;
+using System.ComponentModel;
 
 namespace WinFormsUI.Customer
 {
     public partial class FormCustomer : MaterialForm
     {
         CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+        Business.Concrete.LicenseManager licenseManager = new Business.Concrete.LicenseManager(new EfLicenseDal());
+        ProgramLicenseManager programLicenseManager = new ProgramLicenseManager(new EfProgramLicenseDal());
+        UpdateTableManager updateTableManager = new UpdateTableManager(new EfUpdateTableDal());
 
         public FormCustomer()
         {
@@ -26,6 +30,11 @@ namespace WinFormsUI.Customer
             {
                 var customers = customerManager.GetAll();
                 dgwCustomers.DataSource = customers;
+                dgwCustomers.Columns["CustomerID"].HeaderText = "Müşteri ID";
+                dgwCustomers.Columns["Name"].HeaderText = "Müşteri Adı";
+                dgwCustomers.Columns["DBName"].HeaderText = "Veritabanı Adı";
+                dgwCustomers.Columns["Address"].HeaderText = "Adres";
+                dgwCustomers.Columns["Port"].HeaderText = "Port";
 
                 if (customers.Count == 0)
                 {
@@ -88,20 +97,24 @@ namespace WinFormsUI.Customer
                 MessageBox.Show("Lütfen silmek için bir müşteri seçin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             Entities.Concrete.Customer selectedCustomer = (Entities.Concrete.Customer)dgwCustomers.CurrentRow.DataBoundItem;
+
             DialogResult dialogResult = MessageBox.Show(
-                $"{selectedCustomer.Name} adlı müşteriyi silmek istediğinize emin misiniz?",
+                $"{selectedCustomer.Name} adlı müşteri ve bağlı tüm lisansları silmek istediğinize emin misiniz?",
                 "Silme Onayı",
                 MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
+                MessageBoxIcon.Warning);
 
             if (dialogResult == DialogResult.Yes)
             {
-                customerManager.Delete(selectedCustomer);
-                MessageBox.Show("Müşteri başarıyla silindi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DeleteCustomerWithDependencies(selectedCustomer.CustomerID);
+
                 dgwCustomers.DataSource = customerManager.GetAll();
             }
         }
+
+
 
         private bool IsAdmin()
         {
@@ -126,5 +139,50 @@ namespace WinFormsUI.Customer
                 return false;
             }
         }
+        private void DeleteCustomerWithDependencies(int customerId)
+        {
+            DeleteUpdatesWithDependencies(customerId);
+
+            DeleteLicenseWithDependencies(customerId);
+
+            var customer = customerManager.GetByCustomerId(customerId).FirstOrDefault();
+            if (customer != null)
+            {
+                customerManager.Delete(customer);
+                MessageBox.Show("Müşteri ve tüm bağlı kayıtlar başarıyla silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+
+        private void DeleteLicenseWithDependencies(int customerId)
+        {
+            var dependentLicenses = licenseManager.GetAll().Where(l => l.CustomerID == customerId).ToList();
+
+            foreach (var license in dependentLicenses)
+            {
+                var dependentProgramLicenses = programLicenseManager.GetByLicenseId(license.LicenseID).ToList();
+                foreach (var programLicense in dependentProgramLicenses)
+                {
+                    programLicenseManager.Delete(programLicense);
+                }
+
+                licenseManager.Delete(license);
+            }
+
+            MessageBox.Show("Müşteriye bağlı lisanslar ve program lisansları başarıyla silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void DeleteUpdatesWithDependencies(int customerId)
+        {
+            var dependentUpdateTables = updateTableManager.GetAll().Where(u => u.CustomerID == customerId).ToList();
+            foreach (var updateTable in dependentUpdateTables)
+            {
+                updateTableManager.Delete(updateTable);
+            }
+
+            MessageBox.Show("Bağlı güncelleme kayıtları başarıyla silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
     }
 }

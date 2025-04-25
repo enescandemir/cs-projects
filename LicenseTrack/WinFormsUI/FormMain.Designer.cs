@@ -32,7 +32,6 @@ namespace WinFormsUI
             buttonProgramLicense = new MaterialButton();
             buttonUpdateTable = new MaterialButton();
             buttonVersion = new MaterialButton();
-            labelUserInfo = new MaterialLabel();
             buttonAdmin = new MaterialButton();
             SuspendLayout();
             // 
@@ -43,14 +42,15 @@ namespace WinFormsUI
             buttonCustomer.Depth = 0;
             buttonCustomer.HighEmphasis = true;
             buttonCustomer.Icon = null;
-            buttonCustomer.Location = new Point(69, 124);
+            buttonCustomer.Location = new Point(57, 124);
             buttonCustomer.Margin = new Padding(4, 6, 4, 6);
             buttonCustomer.MouseState = MouseState.HOVER;
             buttonCustomer.Name = "buttonCustomer";
             buttonCustomer.NoAccentTextColor = Color.Empty;
-            buttonCustomer.Size = new Size(99, 36);
+            buttonCustomer.AutoSize = false;
+            buttonCustomer.Size = new Size(120, 120);
             buttonCustomer.TabIndex = 0;
-            buttonCustomer.Text = "Customer";
+            buttonCustomer.Text = "Müşteri";
             buttonCustomer.Type = MaterialButton.MaterialButtonType.Contained;
             buttonCustomer.UseAccentColor = false;
             buttonCustomer.Click += buttonCustomer_Click;
@@ -62,14 +62,15 @@ namespace WinFormsUI
             buttonLicense.Depth = 0;
             buttonLicense.HighEmphasis = true;
             buttonLicense.Icon = null;
-            buttonLicense.Location = new Point(376, 124);
+            buttonLicense.Location = new Point(475, 124);
             buttonLicense.Margin = new Padding(4, 6, 4, 6);
             buttonLicense.MouseState = MouseState.HOVER;
             buttonLicense.Name = "buttonLicense";
             buttonLicense.NoAccentTextColor = Color.Empty;
-            buttonLicense.Size = new Size(79, 36);
+            buttonLicense.AutoSize = false;
+            buttonLicense.Size = new Size(120, 120);
             buttonLicense.TabIndex = 1;
-            buttonLicense.Text = "License";
+            buttonLicense.Text = "Lisans";
             buttonLicense.Type = MaterialButton.MaterialButtonType.Contained;
             buttonLicense.UseAccentColor = false;
             buttonLicense.Click += buttonLicense_Click;
@@ -81,12 +82,13 @@ namespace WinFormsUI
             buttonProgram.Depth = 0;
             buttonProgram.HighEmphasis = true;
             buttonProgram.Icon = null;
-            buttonProgram.Location = new Point(69, 193);
+            buttonProgram.Location = new Point(57, 193);
             buttonProgram.Margin = new Padding(4, 6, 4, 6);
             buttonProgram.MouseState = MouseState.HOVER;
             buttonProgram.Name = "buttonProgram";
             buttonProgram.NoAccentTextColor = Color.Empty;
-            buttonProgram.Size = new Size(92, 36);
+            buttonProgram.AutoSize = false;
+            buttonProgram.Size = new Size(120, 120);
             buttonProgram.TabIndex = 2;
             buttonProgram.Text = "Program";
             buttonProgram.Type = MaterialButton.MaterialButtonType.Contained;
@@ -101,14 +103,15 @@ namespace WinFormsUI
             buttonProgramLicense.Depth = 0;
             buttonProgramLicense.HighEmphasis = true;
             buttonProgramLicense.Icon = null;
-            buttonProgramLicense.Location = new Point(336, 193);
+            buttonProgramLicense.Location = new Point(400, 193);
             buttonProgramLicense.Margin = new Padding(4, 6, 4, 6);
             buttonProgramLicense.MouseState = MouseState.HOVER;
             buttonProgramLicense.Name = "buttonProgramLicense";
             buttonProgramLicense.NoAccentTextColor = Color.Empty;
-            buttonProgramLicense.Size = new Size(154, 36);
+            buttonProgramLicense.AutoSize = false;
+            buttonProgramLicense.Size = new Size(120, 120);
             buttonProgramLicense.TabIndex = 3;
-            buttonProgramLicense.Text = "Program License";
+            buttonProgramLicense.Text = "Program-Lisans";
             buttonProgramLicense.Type = MaterialButton.MaterialButtonType.Contained;
             buttonProgramLicense.UseAccentColor = false;
             buttonProgramLicense.UseVisualStyleBackColor = true;
@@ -121,14 +124,15 @@ namespace WinFormsUI
             buttonUpdateTable.Depth = 0;
             buttonUpdateTable.HighEmphasis = true;
             buttonUpdateTable.Icon = null;
-            buttonUpdateTable.Location = new Point(378, 264);
+            buttonUpdateTable.Location = new Point(475, 264);
             buttonUpdateTable.Margin = new Padding(4, 6, 4, 6);
             buttonUpdateTable.MouseState = MouseState.HOVER;
             buttonUpdateTable.Name = "buttonUpdateTable";
             buttonUpdateTable.NoAccentTextColor = Color.Empty;
-            buttonUpdateTable.Size = new Size(77, 36);
+            buttonUpdateTable.AutoSize = false;
+            buttonUpdateTable.Size = new Size(120, 120);
             buttonUpdateTable.TabIndex = 4;
-            buttonUpdateTable.Text = "Update";
+            buttonUpdateTable.Text = "Güncellemeler";
             buttonUpdateTable.Type = MaterialButton.MaterialButtonType.Contained;
             buttonUpdateTable.UseAccentColor = false;
             buttonUpdateTable.Click += buttonUpdateTable_Click;
@@ -140,29 +144,18 @@ namespace WinFormsUI
             buttonVersion.Depth = 0;
             buttonVersion.HighEmphasis = true;
             buttonVersion.Icon = null;
-            buttonVersion.Location = new Point(69, 264);
+            buttonVersion.Location = new Point(57, 264);
             buttonVersion.Margin = new Padding(4, 6, 4, 6);
             buttonVersion.MouseState = MouseState.HOVER;
             buttonVersion.Name = "buttonVersion";
             buttonVersion.NoAccentTextColor = Color.Empty;
-            buttonVersion.Size = new Size(82, 36);
+            buttonVersion.AutoSize = false;
+            buttonVersion.Size = new Size(120,120);
             buttonVersion.TabIndex = 5;
-            buttonVersion.Text = "Version";
+            buttonVersion.Text = "Versiyon";
             buttonVersion.Type = MaterialButton.MaterialButtonType.Contained;
             buttonVersion.UseAccentColor = false;
             buttonVersion.Click += buttonVersion_Click;
-            // 
-            // labelUserInfo
-            // 
-            labelUserInfo.AutoSize = true;
-            labelUserInfo.Depth = 0;
-            labelUserInfo.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            labelUserInfo.Location = new Point(362, 75);
-            labelUserInfo.MouseState = MouseState.HOVER;
-            labelUserInfo.Name = "labelUserInfo";
-            labelUserInfo.Size = new Size(109, 19);
-            labelUserInfo.TabIndex = 6;
-            labelUserInfo.Text = "Kullanıcı Bilgisi";
             // 
             // buttonAdmin
             // 
@@ -171,7 +164,7 @@ namespace WinFormsUI
             buttonAdmin.Depth = 0;
             buttonAdmin.HighEmphasis = true;
             buttonAdmin.Icon = null;
-            buttonAdmin.Location = new Point(200, 312);
+            buttonAdmin.Location = new Point(237, 328);
             buttonAdmin.Margin = new Padding(4, 6, 4, 6);
             buttonAdmin.MouseState = MouseState.HOVER;
             buttonAdmin.Name = "buttonAdmin";
@@ -188,7 +181,6 @@ namespace WinFormsUI
             // 
             ClientSize = new Size(600, 400);
             Controls.Add(buttonAdmin);
-            Controls.Add(labelUserInfo);
             Controls.Add(buttonVersion);
             Controls.Add(buttonUpdateTable);
             Controls.Add(buttonProgramLicense);
@@ -197,10 +189,41 @@ namespace WinFormsUI
             Controls.Add(buttonLicense);
             Name = "FormMain";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Main Menu";
+            Text = "Ana Menü";
             ResumeLayout(false);
             PerformLayout();
         }
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+
+            int formWidth = ClientSize.Width;
+            int formHeight = ClientSize.Height;
+
+            int buttonSize = Math.Min(formWidth / 8, 150);
+
+            int spacing = (formWidth - (buttonSize * 6)) / 7; 
+
+            int topMargin = formHeight / 4;
+
+            MaterialButton[] buttons = {
+        buttonCustomer, buttonLicense, buttonProgram,
+        buttonProgramLicense, buttonVersion, buttonUpdateTable
+    };
+
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                var btn = buttons[i];
+                btn.Size = new Size(buttonSize, buttonSize);
+                int x = spacing + i * (buttonSize + spacing);
+                btn.Location = new Point(x, topMargin);
+            }
+
+            int adminX = (formWidth - buttonAdmin.Width) / 2;
+            int adminY = topMargin + buttonSize + 60; 
+            buttonAdmin.Location = new Point(adminX, adminY);
+        }
+
 
         #endregion
 

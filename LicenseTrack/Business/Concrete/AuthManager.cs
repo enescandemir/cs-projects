@@ -33,7 +33,7 @@ public class AuthManager : IAuthService
     {
         if (_userService.GetByMail(email) != null)
         {
-            return false; // Kullanıcı zaten kayıtlı.
+            return false; 
         }
 
         byte[] passwordHash, passwordSalt;

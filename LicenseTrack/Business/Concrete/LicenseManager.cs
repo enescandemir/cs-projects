@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concrete;
+using Entities.Concrete.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,5 +50,36 @@ namespace Business.Concrete
         {
             return _licenseDal.GetAll(l => l.LicenseID == licenseId);
         }
+        public List<CustomerLicenseDto> GetAllWithNames()
+        {
+            try
+            {
+                using (var context = new LicenseTrackContext())
+                {
+                    var licensesWithNames = from license in _licenseDal.GetAll()
+                                            join customer in context.Customer
+                                            on license.CustomerID equals customer.CustomerID
+                                            select new CustomerLicenseDto
+                                            {
+                                                LicenseID = license.LicenseID,
+                                                CustomerName = customer.Name,
+                                                Type = license.Type,
+                                                StartDate = license.StartDate,
+                                                EndDate = license.EndDate,
+                                                Description = license.Description
+                                            };
+
+                    return licensesWithNames.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lisans ve müşteri bilgileri birleştirilirken bir hata oluştu: " + ex.Message);
+                return new List<CustomerLicenseDto>();
+            }
+        }
+
+
+
     }
 }
