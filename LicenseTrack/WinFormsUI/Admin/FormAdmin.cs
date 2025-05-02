@@ -198,8 +198,18 @@ namespace WinFormsUI.License
 
                 userBindingSource.DataSource = usersWithRoles;
                 dgwUser.DataSource = userBindingSource;
+                SetColumnHeaders();
             }
         }
+        private void SetColumnHeaders()
+        {
+            if (dgwUser.Columns["Id"] != null) dgwUser.Columns["Id"].HeaderText = "Kullanıcı ID";
+            if (dgwUser.Columns["FirstName"] != null) dgwUser.Columns["FirstName"].HeaderText = "Ad";
+            if (dgwUser.Columns["LastName"] != null) dgwUser.Columns["LastName"].HeaderText = "Soyad";
+            if (dgwUser.Columns["Email"] != null) dgwUser.Columns["Email"].HeaderText = "E-posta";
+            if (dgwUser.Columns["Role"] != null) dgwUser.Columns["Role"].HeaderText = "Rol";
+        }
+
 
 
 

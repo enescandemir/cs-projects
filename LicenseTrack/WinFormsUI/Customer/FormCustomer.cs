@@ -22,6 +22,7 @@ namespace WinFormsUI.Customer
         {
             InitializeComponent();
             this.Load += FormCustomer_Load;
+
         }
 
         private void FormCustomer_Load(object sender, EventArgs e)
@@ -30,11 +31,7 @@ namespace WinFormsUI.Customer
             {
                 var customers = customerManager.GetAll();
                 dgwCustomers.DataSource = customers;
-                dgwCustomers.Columns["CustomerID"].HeaderText = "Müşteri ID";
-                dgwCustomers.Columns["Name"].HeaderText = "Müşteri Adı";
-                dgwCustomers.Columns["DBName"].HeaderText = "Veritabanı Adı";
-                dgwCustomers.Columns["Address"].HeaderText = "Adres";
-                dgwCustomers.Columns["Port"].HeaderText = "Port";
+                SetColumnHeaders();
 
                 if (customers.Count == 0)
                 {
@@ -182,6 +179,15 @@ namespace WinFormsUI.Customer
 
             MessageBox.Show("Bağlı güncelleme kayıtları başarıyla silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+        private void SetColumnHeaders()
+        {
+            dgwCustomers.Columns["CustomerID"].HeaderText = "Müşteri ID";
+            dgwCustomers.Columns["Name"].HeaderText = "Müşteri Adı";
+            dgwCustomers.Columns["DBName"].HeaderText = "Veritabanı Adı";
+            dgwCustomers.Columns["Address"].HeaderText = "Adres";
+            dgwCustomers.Columns["Port"].HeaderText = "Port";
+        }
+
 
 
     }

@@ -62,6 +62,68 @@ namespace WinFormsUI.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        internal static System.Drawing.Icon admin
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("admin", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        internal static System.Drawing.Icon license
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("license", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+        internal static System.Drawing.Icon customer
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("customer", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+        internal static System.Drawing.Icon program
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("program", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+        internal static System.Drawing.Icon programLicense
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("programLicense", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+        internal static System.Drawing.Icon update
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("update", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+        internal static System.Drawing.Icon version
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("version", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
 
 
         /// <summary>

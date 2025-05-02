@@ -26,14 +26,7 @@ namespace WinFormsUI.ProgramLicense
             {
                 var programLicenses = programLicenseManager.GetAllWithNames();
                 dgwProgramLicense.DataSource = programLicenses;
-
-                dgwProgramLicense.Columns["ProgramLicenseID"].HeaderText = "Program-Lisans ID";
-                dgwProgramLicense.Columns["ProgramName"].HeaderText = "Program Adı";
-                dgwProgramLicense.Columns["CustomerName"].HeaderText = "Müşteri Adı";
-                dgwProgramLicense.Columns["LicenseType"].HeaderText = "Tip";
-                dgwProgramLicense.Columns["LicenseStartDate"].HeaderText = "Başlangıç Tarihi";
-                dgwProgramLicense.Columns["LicenseEndDate"].HeaderText = "Bitiş Tarihi";
-                dgwProgramLicense.Columns["LicenseDescription"].HeaderText = "Açıklama";
+                SetColumnHeaders();
 
                 dgwProgramLicense.CellFormatting += DgwProgramLicense_CellFormatting;
 
@@ -54,7 +47,8 @@ namespace WinFormsUI.ProgramLicense
             if (dgwProgramLicense.Columns[e.ColumnIndex].Name == "LicenseType" && e.Value != null)
             {
                 e.Value = e.Value.ToString() == "1" ? "Demo" :
-                          e.Value.ToString() == "2" ? "6 Aylık" : "Bilinmeyen";
+                          e.Value.ToString() == "2" ? "6 Aylık" :
+                          e.Value.ToString() == "3" ? "1 Yıllık" : "Bilinmeyen";
                 e.FormattingApplied = true;
             }
         }
@@ -177,8 +171,21 @@ namespace WinFormsUI.ProgramLicense
         {
             var programLicenses = programLicenseManager.GetAllWithNames();
             dgwProgramLicense.DataSource = null;
-            dgwProgramLicense.DataSource = programLicenses; 
+            dgwProgramLicense.DataSource = programLicenses;
+            SetColumnHeaders();
         }
+
+        private void SetColumnHeaders()
+        {
+            dgwProgramLicense.Columns["ProgramLicenseID"].HeaderText = "Program-Lisans ID";
+            dgwProgramLicense.Columns["ProgramName"].HeaderText = "Program Adı";
+            dgwProgramLicense.Columns["CustomerName"].HeaderText = "Müşteri Adı";
+            dgwProgramLicense.Columns["LicenseType"].HeaderText = "Tip";
+            dgwProgramLicense.Columns["LicenseStartDate"].HeaderText = "Başlangıç Tarihi";
+            dgwProgramLicense.Columns["LicenseEndDate"].HeaderText = "Bitiş Tarihi";
+            dgwProgramLicense.Columns["LicenseDescription"].HeaderText = "Açıklama";
+        }
+
 
     }
 }

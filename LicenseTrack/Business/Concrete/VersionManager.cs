@@ -1,18 +1,17 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
-using DataAccess.Concrete;
+using Entities.Concrete;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
     public class VersionManager : IVersionService
     {
-        IVersionDal _versionDal;
+        private readonly IVersionDal _versionDal;
+
         public VersionManager(IVersionDal versionDal)
         {
             _versionDal = versionDal;
@@ -20,18 +19,30 @@ namespace Business.Concrete
 
         public void Add(Entities.Concrete.Version version)
         {
-            try
+            ValidateVersion(version);
+
+            // Aynı isimde versiyon varsa uyarı
+            var existing = _versionDal.Get(v => v.Name.ToLower() == version.Name.ToLower());
+            if (existing != null)
             {
-                _versionDal.Add(version);
-                Console.WriteLine("Versiyon bilgileri başarıyla eklendi.");
+                throw new Exception("Bu isimde bir versiyon zaten mevcut.");
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Versiyon bilgileri eklenirken bir hata oluştu.");
-            }
+
+            _versionDal.Add(version);
+            Console.WriteLine("Versiyon bilgileri başarıyla eklendi.");
         }
+
         public void Update(Entities.Concrete.Version version)
         {
+            ValidateVersion(version);
+
+            // Aynı isimde başka versiyon varsa uyarı
+            var existing = _versionDal.Get(v => v.Name.ToLower() == version.Name.ToLower() && v.VersionID != version.VersionID);
+            if (existing != null)
+            {
+                throw new Exception("Bu isimde başka bir versiyon zaten mevcut.");
+            }
+
             _versionDal.Update(version);
         }
 
@@ -50,6 +61,16 @@ namespace Business.Concrete
             return _versionDal.GetAll(v => v.VersionID == versionId);
         }
 
+        private void ValidateVersion(Entities.Concrete.Version version)
+        {
+            var validator = new VersionValidator();
+            var result = validator.Validate(version);
 
+            if (!result.IsValid)
+            {
+                var errorMessages = string.Join("\n", result.Errors.Select(e => e.ErrorMessage));
+                throw new ValidationException(errorMessages);
+            }
+        }
     }
 }

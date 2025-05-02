@@ -36,14 +36,23 @@ namespace WinFormsUI.License
             }
             else
             {
+                dtpEndDate.Enabled = false;
                 License = new Entities.Concrete.License();
                 if ((int)cmbType.SelectedValue == (int)LicenseType.Demo)
                 {
                     dtpStartDate.Value = DateTime.Today;
                     dtpEndDate.Value = DateTime.Today.AddDays(1);
                 }
-
-                dtpEndDate.Enabled = false;
+                else if ((int)cmbType.SelectedValue == (int)LicenseType.OneYear)
+                {
+                    dtpStartDate.Value = DateTime.Today;
+                    dtpEndDate.Value = DateTime.Today.AddYears(1);
+                }
+                else if ((int)cmbType.SelectedValue == (int)LicenseType.SixMonths)
+                {
+                    dtpStartDate.Value = DateTime.Today;
+                    dtpEndDate.Value = DateTime.Today.AddMonths(6);
+                }
             } 
             cmbType.SelectedIndexChanged += cmbType_SelectedIndexChanged;
             dtpStartDate.ValueChanged += dtpStartDate_ValueChanged;
@@ -69,6 +78,8 @@ namespace WinFormsUI.License
                     return "1 Günlük";
                 case LicenseType.SixMonths:
                     return "6 Aylık";
+                case LicenseType.OneYear:
+                    return "1 Yıllık";
                 default:
                     return type.ToString();
             }
@@ -97,7 +108,7 @@ namespace WinFormsUI.License
                     dtpStartDate.Value = DateTime.Now;
                     dtpEndDate.Value = dtpStartDate.Value.AddDays(1);
                 }
-                else
+                else if (selectedType == (int)LicenseType.OneYear)
                 {
                     dtpStartDate.Value = DateTime.Now;
                     dtpEndDate.Value = DateTime.Now.AddYears(1);
@@ -117,6 +128,10 @@ namespace WinFormsUI.License
                 else if (selectedType == (int)LicenseType.Demo)
                 {
                     dtpEndDate.Value = dtpStartDate.Value.AddDays(1);
+                }
+                else if (selectedType == (int)LicenseType.OneYear)
+                {
+                    dtpEndDate.Value = dtpStartDate.Value.AddYears(1);
                 }
             }
         }

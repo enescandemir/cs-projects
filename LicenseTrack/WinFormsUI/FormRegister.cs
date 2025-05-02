@@ -43,10 +43,20 @@ namespace WinFormsUI
             string email = txtEmail.Text.Trim();
             string password = txtPassword.Text;
 
-            if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName) ||
-                string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+            var user = new User
             {
-                MessageBox.Show("Lütfen tüm alanları doldurun.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                FirstName = firstName,
+                LastName = lastName,
+                Email = email
+            };
+
+            var validator = new UserValidator(password);
+            var result = validator.Validate(user);
+
+            if (!result.IsValid)
+            {
+                MessageBox.Show("Doğrulama hatası:\n" + string.Join("\n", result.Errors.Select(e => e.ErrorMessage)),
+                    "Geçersiz Veri", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -62,6 +72,7 @@ namespace WinFormsUI
                 MessageBox.Show("Kayıt başarısız. Email zaten kayıtlı olabilir.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
         private void btnReturn_Click(object sender, EventArgs e)
         {

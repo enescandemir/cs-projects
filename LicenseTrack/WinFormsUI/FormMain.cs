@@ -7,14 +7,18 @@ using WinFormsUI.ProgramFrm;
 using WinFormsUI.ProgramLicense;
 using WinFormsUI.UpdateTable;
 using WinFormsUI.Version;
+using System.Runtime.InteropServices;
+using WinFormsUI.Helpers;
 
 namespace WinFormsUI
 {
+
     public partial class FormMain : MaterialForm
     {
         public FormMain()
         {
             InitializeComponent();
+
             this.WindowState = FormWindowState.Maximized;
             this.Location = new Point(
             (Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2,
@@ -23,13 +27,31 @@ namespace WinFormsUI
             this.FormClosing += (s, e) => Application.Exit();
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(
-                Primary.BlueGrey800, Primary.BlueGrey900,
-                Primary.BlueGrey500, Accent.LightBlue200,
-                TextShade.WHITE);
+                Primary.BlueGrey100,
+                Primary.BlueGrey200,
+                Primary.BlueGrey300,
+                Accent.LightBlue400,
+                TextShade.BLACK
+            );
+
+
+
+            this.Load += FormMain_Load;
+
+
 
             SetAdminButtonVisibility();
+        }
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            UIHelper.ApplyRoundedCorners(buttonCustomer, 20);
+            UIHelper.ApplyRoundedCorners(buttonLicense, 20);
+            UIHelper.ApplyRoundedCorners(buttonProgram, 20);
+            UIHelper.ApplyRoundedCorners(buttonProgramLicense, 20);
+            UIHelper.ApplyRoundedCorners(buttonVersion, 20);
+            UIHelper.ApplyRoundedCorners(buttonUpdateTable, 20);
+            UIHelper.ApplyRoundedCorners(buttonAdmin, 20);
         }
 
         private void SetAdminButtonVisibility()
@@ -79,5 +101,8 @@ namespace WinFormsUI
         {
             OpenForm(new FormAdmin());
         }
+
+
+
     }
 }

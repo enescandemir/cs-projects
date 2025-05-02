@@ -9,6 +9,7 @@ namespace Entities.Concrete.Enums
     public enum LicenseType
     {
         Demo = 1,
-        SixMonths = 2
+        SixMonths = 2,
+        OneYear = 3
     }
 }

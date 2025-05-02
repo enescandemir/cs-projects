@@ -25,12 +25,7 @@ namespace WinFormsUI.UpdateTable
             {
                 var updates = updateTableManager.GetAllWithNames(); 
                 dgwUpdateTable.DataSource = updates;
-                dgwUpdateTable.Columns["UpdateID"].HeaderText = "Güncelleme ID";
-                dgwUpdateTable.Columns["CustomerName"].HeaderText = "Müşteri Adı";
-                dgwUpdateTable.Columns["VersionName"].HeaderText = "Versiyon Adı";
-                dgwUpdateTable.Columns["UpdateDate"].HeaderText = "Güncelleme Tarihi";
-                dgwUpdateTable.Columns["Description"].HeaderText = "Açıklama";
-
+                SetColumnHeaders();
 
                 if (updates.Count == 0)
                 {
@@ -157,6 +152,16 @@ namespace WinFormsUI.UpdateTable
             var updates = updateTableManager.GetAllWithNames();
             dgwUpdateTable.DataSource = null;
             dgwUpdateTable.DataSource = updates;
+            SetColumnHeaders();
         }
+        private void SetColumnHeaders()
+        {
+            dgwUpdateTable.Columns["UpdateID"].HeaderText = "Güncelleme ID";
+            dgwUpdateTable.Columns["CustomerName"].HeaderText = "Müşteri Adı";
+            dgwUpdateTable.Columns["VersionName"].HeaderText = "Versiyon Adı";
+            dgwUpdateTable.Columns["UpdateDate"].HeaderText = "Güncelleme Tarihi";
+            dgwUpdateTable.Columns["Description"].HeaderText = "Açıklama";
+        }
+
     }
 }

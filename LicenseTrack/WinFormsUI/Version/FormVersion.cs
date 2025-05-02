@@ -25,13 +25,8 @@ namespace WinFormsUI.Version
             {
                 var versions = versionManager.GetAll();
                 dgwVersion.DataSource = versions;
+                SetColumnHeaders();
 
-                dgwVersion.Columns["VersionID"].HeaderText = "Versiyon ID";
-                dgwVersion.Columns["Type"].HeaderText = "Versiyon Tipi";
-                dgwVersion.Columns["Name"].HeaderText = "Adı";
-                dgwVersion.Columns["Number"].HeaderText = "Numarası";
-                dgwVersion.Columns["Description"].HeaderText = "Açıklama";
-                dgwVersion.Columns["DependentID"].HeaderText = "Bağlı Olduğu Versiyon ID";
 
                 if (versions.Count == 0)
                 {
@@ -170,6 +165,16 @@ namespace WinFormsUI.Version
                 MessageBox.Show($"Versiyon ID {versionId} ve bağlı tüm kayıtlar başarıyla silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+        private void SetColumnHeaders()
+        {
+            dgwVersion.Columns["VersionID"].HeaderText = "Versiyon ID";
+            dgwVersion.Columns["Type"].HeaderText = "Versiyon Tipi";
+            dgwVersion.Columns["Name"].HeaderText = "Adı";
+            dgwVersion.Columns["Number"].HeaderText = "Numarası";
+            dgwVersion.Columns["Description"].HeaderText = "Açıklama";
+            dgwVersion.Columns["DependentID"].HeaderText = "Bağlı Olduğu Versiyon ID";
+        }
+
 
 
     }

@@ -27,8 +27,7 @@ namespace WinFormsUI.ProgramFrm
             {
                 var programs = programManager.GetAll();
                 dgwProgram.DataSource = programs;
-                dgwProgram.Columns["ProgramID"].HeaderText = "Program ID";
-                dgwProgram.Columns["Name"].HeaderText = "Program Adı";
+                SetColumnHeaders();
                 if (programs.Count == 0)
                 {
                     MessageBox.Show("Veritabanında program bulunamadı.");
@@ -147,6 +146,13 @@ namespace WinFormsUI.ProgramFrm
                 MessageBox.Show("Program ve bağlı program lisansları başarıyla silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void SetColumnHeaders()
+        {
+            dgwProgram.Columns["ProgramID"].HeaderText = "Program ID";
+            dgwProgram.Columns["Name"].HeaderText = "Program Adı";
+        }
+
 
     }
 }

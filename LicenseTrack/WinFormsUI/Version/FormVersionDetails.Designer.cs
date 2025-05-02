@@ -87,6 +87,8 @@ namespace WinFormsUI.Version
             txtNumber.TabIndex = 12;
             txtNumber.Text = "";
             txtNumber.TrailingIcon = null;
+            txtNumber.Enabled = false;
+
             // 
             // txtDescription
             // 

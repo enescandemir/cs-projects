@@ -27,12 +27,7 @@ namespace WinFormsUI.License
             {
                 var licensesWithNames = licenseManager.GetAllWithNames();
                 dgwLicense.DataSource = licensesWithNames;
-                dgwLicense.Columns["LicenseID"].HeaderText = "Lisans ID";
-                dgwLicense.Columns["CustomerName"].HeaderText = "Müşteri Adı";
-                dgwLicense.Columns["Type"].HeaderText = "Tip";
-                dgwLicense.Columns["StartDate"].HeaderText = "Başlangıç Tarihi";
-                dgwLicense.Columns["EndDate"].HeaderText = "Bitiş Tarihi";
-                dgwLicense.Columns["Description"].HeaderText = "Açıklama";
+                SetColumnHeaders();
 
                 if (licensesWithNames.Count == 0)
                 {
@@ -52,7 +47,8 @@ namespace WinFormsUI.License
             if (dgwLicense.Columns[e.ColumnIndex].Name == "Type" && e.Value != null)
             {
                 e.Value = e.Value.ToString() == "1" ? "1 Günlük" :
-                          e.Value.ToString() == "2" ? "6 Aylık" : "Bilinmeyen";
+                          e.Value.ToString() == "2" ? "6 Aylık" :
+                          e.Value.ToString() == "3" ? "1 Yıllık" : "Bilinmeyen";
                 e.FormattingApplied = true;
             }
         }
@@ -190,7 +186,19 @@ namespace WinFormsUI.License
             var licenses = licenseManager.GetAllWithNames();
             dgwLicense.DataSource = null;
             dgwLicense.DataSource = licenses;
+            SetColumnHeaders();
         }
+
+        private void SetColumnHeaders()
+        {
+            dgwLicense.Columns["LicenseID"].HeaderText = "Lisans ID";
+            dgwLicense.Columns["CustomerName"].HeaderText = "Müşteri Adı";
+            dgwLicense.Columns["Type"].HeaderText = "Tip";
+            dgwLicense.Columns["StartDate"].HeaderText = "Başlangıç Tarihi";
+            dgwLicense.Columns["EndDate"].HeaderText = "Bitiş Tarihi";
+            dgwLicense.Columns["Description"].HeaderText = "Açıklama";
+        }
+
 
 
     }

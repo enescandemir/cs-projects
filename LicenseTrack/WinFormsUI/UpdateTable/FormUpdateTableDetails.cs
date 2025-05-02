@@ -54,9 +54,19 @@ namespace WinFormsUI.UpdateTable
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (cmbCustomer.SelectedValue == null || cmbVersion.SelectedValue == null)
+            if (cmbCustomer.SelectedValue == null)
             {
-                MessageBox.Show("Lütfen zorunlu alanları doldurun!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Lütfen bir müşteri seçin!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else if (cmbVersion.SelectedValue == null)
+            {
+                MessageBox.Show("Lütfen bir sürüm seçin!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else if (dtpUpdateDate.Value == DateTime.MinValue)
+            {
+                MessageBox.Show("Lütfen geçerli bir güncelleme tarihi girin!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -74,10 +84,11 @@ namespace WinFormsUI.UpdateTable
                 updateManager.Update(Update);
             }
 
-            MessageBox.Show("Güncelleme ekleme işlemi başarılı!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Güncelleme başarıyla kaydedildi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {

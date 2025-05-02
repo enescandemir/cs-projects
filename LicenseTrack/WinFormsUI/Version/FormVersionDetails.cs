@@ -2,6 +2,7 @@
 using DataAccess.Concrete;
 using Entities.Concrete;
 using Entities.Concrete.Enums;
+using FluentValidation;
 using MaterialSkin.Controls;
 using System;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace WinFormsUI.Version
             );
             LoadVersionTypes();
             LoadDependentVersions();
+            txtName.TextChanged += txtName_TextChanged;
 
             if (version != null)
             {
@@ -62,33 +64,106 @@ namespace WinFormsUI.Version
             cmbDependentID.ValueMember = "VersionID";
             cmbDependentID.SelectedIndex = 0;
         }
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+            string input = txtName.Text.Trim();
+            if (input.StartsWith("v", StringComparison.OrdinalIgnoreCase))
+                input = input.Substring(1);
+
+            var parts = input.Split('.');
+            if (parts.Length == 3 &&
+                int.TryParse(parts[0], out int major) &&
+                int.TryParse(parts[1], out int minor) &&
+                int.TryParse(parts[2], out int patch))
+            {
+                if (major < 0 || major > 9 || minor < 0 || minor > 99 || patch < 0 || patch > 999)
+                {
+                    txtNumber.Text = string.Empty;
+                    return;
+                }
+
+                txtName.TextChanged -= txtName_TextChanged;
+                txtName.Text = $"V{major:D2}.{minor:D2}.{patch:D2}";
+                txtName.SelectionStart = txtName.Text.Length;
+                txtName.TextChanged += txtName_TextChanged;
+
+                int versionNumber = major * 100000 + minor * 1000 + patch;
+                txtNumber.Text = versionNumber.ToString();
+            }
+            else
+            {
+                txtNumber.Text = string.Empty;
+            }
+        }
+
+
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (cmbType.SelectedItem == null || string.IsNullOrWhiteSpace(txtName.Text) || string.IsNullOrWhiteSpace(txtNumber.Text))
+            if (cmbType.SelectedItem == null)
             {
-                MessageBox.Show("Lütfen zorunlu alanları doldurun!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Lütfen bir sürüm türü seçin!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                MessageBox.Show("Lütfen sürüm adını girin!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             Version.Type = (int)cmbType.SelectedValue;
-            Version.Name = txtName.Text;
-            Version.Number = int.Parse(txtNumber.Text);
-            Version.Description = txtDescription.Text;
-            Version.DependentID = cmbDependentID.SelectedValue is int selectedId && selectedId > 0 ? selectedId : (int?)null;
 
-            if (Version.VersionID == 0)
+            string name = txtName.Text.Trim();
+            if (!name.StartsWith("V", StringComparison.OrdinalIgnoreCase))
             {
-                versionManager.Add(Version);
+                name = "V" + name;
             }
             else
             {
-                versionManager.Update(Version);
+                name = "V" + name.Substring(1); 
             }
 
-            MessageBox.Show("Sürüm kaydı başarıyla eklendi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            Version.Name = name;
+
+            if (int.TryParse(txtNumber.Text, out int versionNumber))
+            {
+                Version.Number = versionNumber;
+            }
+            else
+            {
+                MessageBox.Show("Sürüm adı 'V01.02.05' formatında olmalıdır.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Version.Description = txtDescription.Text;
+            Version.DependentID = cmbDependentID.SelectedValue is int selectedId && selectedId > 0 ? selectedId : (int?)null;
+
+            try
+            {
+                if (Version.VersionID == 0)
+                {
+                    versionManager.Add(Version);
+                    MessageBox.Show("Sürüm kaydı başarıyla eklendi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    versionManager.Update(Version);
+                    MessageBox.Show("Sürüm kaydı başarıyla güncellendi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (ValidationException ex)
+            {
+                MessageBox.Show(ex.Message, "Doğrulama Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Bir hata oluştu:\n" + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
