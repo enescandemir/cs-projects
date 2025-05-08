@@ -54,7 +54,7 @@ public class IconLeftMaterialButton : MaterialButton
             g.FillRectangle(bgBrush, ClientRectangle);
         }
 
-        int iconSize = GetDynamicIconSize();
+        int iconSize = 24;
         int padding = 12;
 
         if (Icon != null)

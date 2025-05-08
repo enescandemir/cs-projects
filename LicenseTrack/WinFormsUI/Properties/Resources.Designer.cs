@@ -164,6 +164,7 @@ namespace WinFormsUI.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+
         internal static System.Drawing.Icon edit
         {
             get

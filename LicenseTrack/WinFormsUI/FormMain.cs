@@ -157,9 +157,8 @@ namespace WinFormsUI
             var userIcon = new PictureBox
             {
                 Image = userIconImage,
-                SizeMode = PictureBoxSizeMode.Zoom,
-                Size = new Size(50, 50),
-                Location = new Point(10, 10)
+                Size = new Size(32,32),
+                Location = new Point(35, 20)
             };
             var lblUserName = new Label
             {
