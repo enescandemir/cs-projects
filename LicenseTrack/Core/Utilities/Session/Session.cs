@@ -12,5 +12,14 @@ namespace Core.Utilities.Session
         public static string UserRole { get; set; }
         public static string UserName { get; set; }
         public static int UserId { get; set; }
+        public static void Clear()
+        {
+            JwtToken = null;
+            UserRole = null;
+            UserName = null;
+            UserId = 0;
+        }
+
     }
+
 }

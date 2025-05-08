@@ -123,6 +123,79 @@ namespace WinFormsUI.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        internal static System.Drawing.Icon menu
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("menu", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+
+        internal static System.Drawing.Icon user
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("user", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        internal static System.Drawing.Icon logout
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("logout", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        internal static System.Drawing.Icon add
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("add", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        internal static System.Drawing.Icon delete
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("delete", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        internal static System.Drawing.Icon edit
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("edit", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        internal static System.Drawing.Icon toggle
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("toggle", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        internal static System.Drawing.Icon key
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("key", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        internal static System.Drawing.Icon adminUser
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("adminUser", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
 
 
 

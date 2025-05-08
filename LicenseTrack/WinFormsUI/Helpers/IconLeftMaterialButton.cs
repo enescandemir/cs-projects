@@ -3,7 +3,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-public class IconTopMaterialButton : MaterialButton
+public class IconLeftMaterialButton : MaterialButton
 {
     private const int TextHeight = 24;
     private const int PaddingBetween = 8;
@@ -12,10 +12,10 @@ public class IconTopMaterialButton : MaterialButton
     private bool _isPressed = false;
     private bool _isHovered = false;
 
-    public IconTopMaterialButton()
+    public IconLeftMaterialButton()
     {
-        Size = new Size(120, 120);
-        TextImageRelation = TextImageRelation.ImageAboveText;
+        Size = new Size(160, 48);
+        TextImageRelation = TextImageRelation.ImageBeforeText;
 
         MouseEnter += (s, e) => { _isHovered = true; Invalidate(); };
         MouseLeave += (s, e) => { _isHovered = false; _isPressed = false; Invalidate(); };
@@ -27,7 +27,7 @@ public class IconTopMaterialButton : MaterialButton
     {
         var g = pevent.Graphics;
         g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-        g.Clear(Parent?.BackColor ?? Color.White);
+        g.Clear(SkinManager.ColorScheme.PrimaryColor);
 
         Color baseColor = UseAccentColor ? SkinManager.ColorScheme.AccentColor : SkinManager.ColorScheme.PrimaryColor;
 
@@ -54,40 +54,31 @@ public class IconTopMaterialButton : MaterialButton
             g.FillRectangle(bgBrush, ClientRectangle);
         }
 
+        int iconSize = GetDynamicIconSize();
+        int padding = 12;
+
         if (Icon != null)
         {
-            int iconSize = GetDynamicIconSize();
-            int iconTop;
-
-            if (string.IsNullOrEmpty(Text))
-            {
-                iconTop = (Height - iconSize) / 2;
-            }
-            else
-            {
-                iconTop = (Height - iconSize - TextHeight - PaddingBetween) / 2;
-            }
-
             var iconRect = new Rectangle(
-                (Width - iconSize) / 2,
-                iconTop,
+                padding,
+                (Height - iconSize) / 2,
                 iconSize,
                 iconSize
             );
-
             g.DrawImage(Icon, iconRect);
         }
 
         if (!string.IsNullOrEmpty(Text))
         {
-            var textRect = new Rectangle(4, Height - TextHeight - 8, Width - 8, TextHeight);
+            var textX = padding + iconSize + PaddingBetween;
+            var textRect = new Rectangle(textX, 0, Width - textX - padding, Height);
             using (var textBrush = new SolidBrush(Enabled
                 ? SkinManager.ColorScheme.TextColor
                 : GetDisabledColor(SkinManager.ColorScheme.TextColor)))
             {
                 var sf = new StringFormat
                 {
-                    Alignment = StringAlignment.Center,
+                    Alignment = StringAlignment.Near,
                     LineAlignment = StringAlignment.Center
                 };
                 g.DrawString(Text, SegoeUI10, textBrush, textRect, sf);
@@ -98,7 +89,7 @@ public class IconTopMaterialButton : MaterialButton
     private int GetDynamicIconSize()
     {
         int minSide = Math.Min(Width, Height);
-        return Math.Max(24, (int)(minSide * 0.64));
+        return Math.Max(24, (int)(minSide * 0.6)); 
     }
 
     private Color GetDisabledColor(Color baseColor)
@@ -118,4 +109,10 @@ public class IconTopMaterialButton : MaterialButton
 
         return Color.FromArgb(color.A, red, green, blue);
     }
+    protected override void OnCreateControl()
+    {
+        base.OnCreateControl();
+        Invalidate();
+    }
+
 }

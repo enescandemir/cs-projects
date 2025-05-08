@@ -2,6 +2,7 @@
 using MaterialSkin.Controls;
 using System.Drawing;
 using System.Windows.Forms;
+using WinFormsUI.Helpers;
 
 namespace WinFormsUI.UpdateTable
 {
@@ -25,9 +26,9 @@ namespace WinFormsUI.UpdateTable
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             dgwUpdateTable = new DataGridView();
-            buttonAdd = new MaterialButton();
-            buttonUpdate = new MaterialButton();
-            buttonDelete = new MaterialButton();
+            buttonAdd = new IconLeftMaterialButton();
+            buttonUpdate = new IconLeftMaterialButton();
+            buttonDelete = new IconLeftMaterialButton();
             ((System.ComponentModel.ISupportInitialize)dgwUpdateTable).BeginInit();
             SuspendLayout();
             // 
@@ -66,13 +67,14 @@ namespace WinFormsUI.UpdateTable
             buttonAdd.Density = MaterialButton.MaterialButtonDensity.Default;
             buttonAdd.Depth = 0;
             buttonAdd.HighEmphasis = true;
-            buttonAdd.Icon = null;
+            buttonAdd.Icon = Properties.Resources.add.ToBitmap();
             buttonAdd.Location = new Point(17, 85);
             buttonAdd.Margin = new Padding(4, 6, 4, 6);
             buttonAdd.MouseState = MouseState.HOVER;
             buttonAdd.Name = "buttonAdd";
             buttonAdd.NoAccentTextColor = Color.Empty;
-            buttonAdd.Size = new Size(64, 36);
+            buttonAdd.Size = new Size(130, 40);
+            buttonAdd.AutoSize = false;
             buttonAdd.TabIndex = 5;
             buttonAdd.Text = "Ekle";
             buttonAdd.Type = MaterialButton.MaterialButtonType.Contained;
@@ -85,13 +87,14 @@ namespace WinFormsUI.UpdateTable
             buttonUpdate.Density = MaterialButton.MaterialButtonDensity.Default;
             buttonUpdate.Depth = 0;
             buttonUpdate.HighEmphasis = true;
-            buttonUpdate.Icon = null;
+            buttonUpdate.Icon = Properties.Resources.edit.ToBitmap();
             buttonUpdate.Location = new Point(280, 85);
             buttonUpdate.Margin = new Padding(4, 6, 4, 6);
             buttonUpdate.MouseState = MouseState.HOVER;
             buttonUpdate.Name = "buttonUpdate";
             buttonUpdate.NoAccentTextColor = Color.Empty;
-            buttonUpdate.Size = new Size(77, 36);
+            buttonUpdate.Size = new Size(130, 40);
+            buttonUpdate.AutoSize = false;
             buttonUpdate.TabIndex = 6;
             buttonUpdate.Text = "Güncelle";
             buttonUpdate.Type = MaterialButton.MaterialButtonType.Contained;
@@ -104,13 +107,14 @@ namespace WinFormsUI.UpdateTable
             buttonDelete.Density = MaterialButton.MaterialButtonDensity.Default;
             buttonDelete.Depth = 0;
             buttonDelete.HighEmphasis = true;
-            buttonDelete.Icon = null;
+            buttonDelete.Icon = Properties.Resources.delete.ToBitmap();
             buttonDelete.Location = new Point(578, 85);
             buttonDelete.Margin = new Padding(4, 6, 4, 6);
             buttonDelete.MouseState = MouseState.HOVER;
             buttonDelete.Name = "buttonDelete";
             buttonDelete.NoAccentTextColor = Color.Empty;
-            buttonDelete.Size = new Size(73, 36);
+            buttonDelete.Size = new Size(130, 40);
+            buttonDelete.AutoSize = false;
             buttonDelete.TabIndex = 7;
             buttonDelete.Text = "Sil";
             buttonDelete.Type = MaterialButton.MaterialButtonType.Contained;
@@ -135,19 +139,32 @@ namespace WinFormsUI.UpdateTable
         protected override void OnResize(EventArgs e)
         {
             base.OnResize(e);
-            dgwUpdateTable.Size = new Size(ClientSize.Width - 34, ClientSize.Height - 145);
 
-            buttonAdd.Location = new Point(dgwUpdateTable.Location.X, dgwUpdateTable.Location.Y - 50);
-            buttonUpdate.Location = new Point(dgwUpdateTable.Location.X + dgwUpdateTable.Width / 2 - buttonUpdate.Width / 2, dgwUpdateTable.Location.Y - 50); 
-            buttonDelete.Location = new Point(dgwUpdateTable.Location.X + dgwUpdateTable.Width - buttonDelete.Width, dgwUpdateTable.Location.Y - 50); 
+            dgwUpdateTable.Size = new Size(ClientSize.Width - 24, ClientSize.Height - 145);
+            int spacing = 10;
+            int topY = dgwUpdateTable.Location.Y - 50;
+
+            buttonAdd.Location = new Point(dgwUpdateTable.Location.X, topY);
+            buttonUpdate.Location = new Point(buttonAdd.Right + spacing, topY);
+            buttonDelete.Location = new Point(buttonUpdate.Right + spacing, topY);
+        }
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            MaterialButton[] buttons = { buttonAdd, buttonUpdate, buttonDelete };
+            foreach (var btn in buttons)
+            {
+                UIHelper.ApplyRoundedCorners(btn, 10);
+            }
+
         }
 
 
         #endregion
 
         private DataGridView dgwUpdateTable;
-        private MaterialButton buttonAdd;
-        private MaterialButton buttonUpdate;
-        private MaterialButton buttonDelete;
+        private IconLeftMaterialButton buttonAdd;
+        private IconLeftMaterialButton buttonUpdate;
+        private IconLeftMaterialButton buttonDelete;
     }
 }

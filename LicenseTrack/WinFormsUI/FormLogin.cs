@@ -75,9 +75,13 @@ namespace WinFormsUI
                 MessageBox.Show($"Hoş geldiniz, {Session.UserName}!\nRolünüz: {Session.UserRole}");
 
                 FormMain formMain = new FormMain();
+                formMain.FormClosed += (s, args) =>
+                {
+                    if (!Program.isLoggingOut)
+                        Environment.Exit(0);
+                };
                 formMain.Show();
                 this.Hide();
-                formMain.FormClosing += (s, args) => Application.Exit();
             }
             else
             {

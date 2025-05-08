@@ -7,7 +7,16 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PackageId>$(Lisans Takip Sistemi)</PackageId>
+    <Product>$(Lisans Yönetim Sistemi)</Product>
+    <PackageIcon></PackageIcon>
+    <AssemblyName>LisansYönetimSistemi</AssemblyName>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="logo.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.11.0" />

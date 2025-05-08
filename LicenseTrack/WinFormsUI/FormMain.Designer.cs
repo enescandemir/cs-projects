@@ -10,6 +10,10 @@ namespace WinFormsUI
     {
         private IconTopMaterialButton buttonCustomer;
         private IconTopMaterialButton buttonLicense;
+        private IconTopMaterialButton buttonMenu;
+        private IconLeftMaterialButton buttonLogout;
+        private MaterialButton buttonBack;
+        private Panel sideMenuPanel;
 
         /// <summary>
         ///  Designer tarafından kullanılan bileşenleri temizler.
@@ -192,6 +196,50 @@ namespace WinFormsUI
             buttonAdmin.UseVisualStyleBackColor = true;
             buttonAdmin.Click += buttonAdmin_Click;
             // 
+            // buttonLogout
+            // 
+            buttonLogout = new IconLeftMaterialButton();
+            buttonLogout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonLogout.Density = MaterialButton.MaterialButtonDensity.Default;
+            buttonLogout.Depth = 0;
+            buttonLogout.HighEmphasis = true;
+            buttonLogout.Icon = Properties.Resources.logout.ToBitmap();
+            buttonLogout.Margin = new Padding(4, 6, 4, 6);
+            buttonLogout.MouseState = MouseState.HOVER;
+            buttonLogout.Name = "buttonLogout";
+            buttonLogout.NoAccentTextColor = Color.Empty;
+            buttonLogout.Size = new Size(150,40);
+            buttonLogout.AutoSize = false;
+            buttonLogout.TabIndex = 8;
+            buttonLogout.Text = "Çıkış Yap";
+            buttonLogout.Tag = "Çıkış Yap";
+            buttonLogout.Type = MaterialButton.MaterialButtonType.Contained;
+            buttonLogout.UseAccentColor = false;
+            buttonLogout.Click += buttonLogout_Click;
+            Controls.Add(buttonLogout);
+            // 
+            // buttonMenu
+            // 
+            buttonMenu = new IconTopMaterialButton();
+            buttonMenu.AutoSize = false;
+            buttonMenu.Size = new Size(40, 40);
+            buttonMenu.Location = new Point(10, 75);
+            buttonMenu.Icon = Properties.Resources.menu.ToBitmap();
+            buttonMenu.Type = MaterialButton.MaterialButtonType.Contained;
+            buttonMenu.Click += buttonMenu_Click;
+            Controls.Add(buttonMenu);
+            // 
+            // sideMenuPanel
+            // 
+            sideMenuPanel = new Panel();
+            sideMenuPanel.Size = new Size(200, ClientSize.Height);
+            sideMenuPanel.Location = new Point(-200, 65);
+            sideMenuPanel.Height = this.ClientSize.Height - sideMenuPanel.Location.Y;
+            sideMenuPanel.BackColor = Color.FromArgb(200, 200, 200);
+            sideMenuPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            sideMenuPanel.AutoScroll = true;
+            Controls.Add(sideMenuPanel);
+            // 
             // FormMain
             // 
             ClientSize = new Size(600, 400);
@@ -216,14 +264,13 @@ namespace WinFormsUI
             int formHeight = ClientSize.Height;
 
             int buttonSize = Math.Min(formWidth / 8, 150);
-
-            int spacing = (formWidth - (buttonSize * 6)) / 7; 
-
+            int spacing = (formWidth - (buttonSize * 6)) / 7;
             int topMargin = formHeight / 4;
 
-            MaterialButton[] buttons = {
+            MaterialButton[] buttons =
+            {
                 buttonCustomer, buttonLicense, buttonProgram,
-                buttonProgramLicense, buttonVersion, buttonUpdateTable, buttonAdmin
+                buttonProgramLicense, buttonVersion, buttonUpdateTable
             };
 
             for (int i = 0; i < buttons.Length; i++)
@@ -233,21 +280,23 @@ namespace WinFormsUI
                 int x = spacing + i * (buttonSize + spacing);
                 btn.Location = new Point(x, topMargin);
             }
-            buttonAdmin.Size = new Size(buttonSize, buttonSize);
 
-            int adminX = (formWidth - buttonAdmin.Width) / 2;
-            int adminY = topMargin + buttonSize + 60; 
-            buttonAdmin.Location = new Point(adminX, adminY);
             buttonAdmin.Size = new Size(buttonSize, buttonSize);
+            int adminX = (formWidth - buttonAdmin.Width) / 2;
+            int adminY = topMargin + buttonSize + 60;
+            buttonAdmin.Location = new Point(adminX, adminY);
+
             foreach (var btn in buttons)
             {
                 UIHelper.ApplyRoundedCorners(btn, 20);
             }
-            bool isCompact = this.ClientSize.Width < 1100; 
+            UIHelper.ApplyRoundedCorners(buttonAdmin, 20);
 
-            MaterialButton[] buttonsToShrinkText = {
+            bool isCompact = formWidth < 1100;
+            MaterialButton[] buttonsToShrinkText =
+            {
                 buttonCustomer, buttonLicense, buttonProgram,
-                buttonProgramLicense, buttonUpdateTable, buttonVersion,buttonAdmin
+                buttonProgramLicense, buttonUpdateTable, buttonVersion, buttonAdmin
             };
 
             foreach (var btn in buttonsToShrinkText)
@@ -255,7 +304,12 @@ namespace WinFormsUI
                 btn.Text = isCompact ? string.Empty : btn.Tag?.ToString() ?? "";
             }
 
+            int restartX = formWidth - buttonLogout.Width - 10;
+            buttonLogout.Location = new Point(restartX, 24);
+
+            sideMenuPanel.Height = formHeight - sideMenuPanel.Location.Y;
         }
+
 
 
         #endregion

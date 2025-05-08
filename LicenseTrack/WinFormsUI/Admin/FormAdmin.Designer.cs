@@ -2,6 +2,7 @@
 using MaterialSkin.Controls;
 using System.Drawing;
 using System.Windows.Forms;
+using WinFormsUI.Helpers;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace WinFormsUI.License
@@ -25,9 +26,9 @@ namespace WinFormsUI.License
         {
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            buttonSetNewPassword = new MaterialButton();
-            buttonToggleAdmin = new MaterialButton();
-            buttonDeleteUser = new MaterialButton();
+            buttonSetNewPassword = new IconLeftMaterialButton();
+            buttonToggleAdmin = new IconLeftMaterialButton();
+            buttonDeleteUser = new IconLeftMaterialButton();
             dgwUser = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)dgwUser).BeginInit();
             SuspendLayout();
@@ -38,13 +39,14 @@ namespace WinFormsUI.License
             buttonSetNewPassword.Density = MaterialButton.MaterialButtonDensity.Default;
             buttonSetNewPassword.Depth = 0;
             buttonSetNewPassword.HighEmphasis = true;
-            buttonSetNewPassword.Icon = null;
+            buttonSetNewPassword.Icon = Properties.Resources.key.ToBitmap(); ;
             buttonSetNewPassword.Location = new Point(12, 82);
             buttonSetNewPassword.Margin = new Padding(4, 6, 4, 6);
             buttonSetNewPassword.MouseState = MouseState.HOVER;
             buttonSetNewPassword.Name = "buttonSetNewPassword";
             buttonSetNewPassword.NoAccentTextColor = Color.Empty;
-            buttonSetNewPassword.Size = new Size(146, 36);
+            buttonSetNewPassword.Size = new Size(250, 40);
+            buttonSetNewPassword.AutoSize = false;
             buttonSetNewPassword.TabIndex = 1;
             buttonSetNewPassword.Text = "Yeni Şifre Ata";
             buttonSetNewPassword.Type = MaterialButton.MaterialButtonType.Contained;
@@ -57,13 +59,14 @@ namespace WinFormsUI.License
             buttonToggleAdmin.Density = MaterialButton.MaterialButtonDensity.Default;
             buttonToggleAdmin.Depth = 0;
             buttonToggleAdmin.HighEmphasis = true;
-            buttonToggleAdmin.Icon = null;
+            buttonToggleAdmin.Icon = Properties.Resources.toggle.ToBitmap(); ;
             buttonToggleAdmin.Location = new Point(346, 82);
             buttonToggleAdmin.Margin = new Padding(4, 6, 4, 6);
             buttonToggleAdmin.MouseState = MouseState.HOVER;
             buttonToggleAdmin.Name = "buttonToggleAdmin";
             buttonToggleAdmin.NoAccentTextColor = Color.Empty;
-            buttonToggleAdmin.Size = new Size(128, 36);
+            buttonToggleAdmin.Size = new Size(250, 40);
+            buttonToggleAdmin.AutoSize = false;
             buttonToggleAdmin.TabIndex = 2;
             buttonToggleAdmin.Text = "Admin Yetkisini Değiştir";
             buttonToggleAdmin.Type = MaterialButton.MaterialButtonType.Contained;
@@ -76,13 +79,14 @@ namespace WinFormsUI.License
             buttonDeleteUser.Density = MaterialButton.MaterialButtonDensity.Default;
             buttonDeleteUser.Depth = 0;
             buttonDeleteUser.HighEmphasis = true;
-            buttonDeleteUser.Icon = null;
+            buttonDeleteUser.Icon = Properties.Resources.delete.ToBitmap(); 
             buttonDeleteUser.Location = new Point(698, 82);
             buttonDeleteUser.Margin = new Padding(4, 6, 4, 6);
             buttonDeleteUser.MouseState = MouseState.HOVER;
             buttonDeleteUser.Name = "buttonDeleteUser";
             buttonDeleteUser.NoAccentTextColor = Color.Empty;
-            buttonDeleteUser.Size = new Size(113, 36);
+            buttonDeleteUser.Size = new Size(250, 40);
+            buttonDeleteUser.AutoSize = false;
             buttonDeleteUser.TabIndex = 3;
             buttonDeleteUser.Text = "Üyeyi Sil";
             buttonDeleteUser.Type = MaterialButton.MaterialButtonType.Contained;
@@ -138,18 +142,31 @@ namespace WinFormsUI.License
             base.OnResize(e);
 
             dgwUser.Size = new Size(ClientSize.Width - 24, ClientSize.Height - 145);
+            int spacing = 10;
+            int topY = dgwUser.Location.Y - 50;
 
-            buttonSetNewPassword.Location = new Point(dgwUser.Location.X, dgwUser.Location.Y - 50); 
-            buttonToggleAdmin.Location = new Point(dgwUser.Location.X + dgwUser.Width / 2 - buttonToggleAdmin.Width / 2, dgwUser.Location.Y - 50);
-            buttonDeleteUser.Location = new Point(dgwUser.Location.X + dgwUser.Width - buttonDeleteUser.Width, dgwUser.Location.Y - 50);
+            buttonSetNewPassword.Location = new Point(dgwUser.Location.X, topY);
+            buttonToggleAdmin.Location = new Point(buttonSetNewPassword.Right + spacing, topY);
+            buttonDeleteUser.Location = new Point(buttonToggleAdmin.Right + spacing, topY);
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            MaterialButton[] buttons = { buttonSetNewPassword, buttonToggleAdmin, buttonDeleteUser };
+            foreach (var btn in buttons)
+            {
+                UIHelper.ApplyRoundedCorners(btn, 10);
+            }
+
         }
 
 
         #endregion
 
-        private MaterialButton buttonSetNewPassword;
-        private MaterialButton buttonToggleAdmin;
-        private MaterialButton buttonDeleteUser;
+        private IconLeftMaterialButton buttonSetNewPassword;
+        private IconLeftMaterialButton buttonToggleAdmin;
+        private IconLeftMaterialButton buttonDeleteUser;
         private DataGridView dgwUser;
     }
 }

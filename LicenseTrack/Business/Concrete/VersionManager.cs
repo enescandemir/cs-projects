@@ -21,7 +21,6 @@ namespace Business.Concrete
         {
             ValidateVersion(version);
 
-            // Aynı isimde versiyon varsa uyarı
             var existing = _versionDal.Get(v => v.Name.ToLower() == version.Name.ToLower());
             if (existing != null)
             {
@@ -35,8 +34,6 @@ namespace Business.Concrete
         public void Update(Entities.Concrete.Version version)
         {
             ValidateVersion(version);
-
-            // Aynı isimde başka versiyon varsa uyarı
             var existing = _versionDal.Get(v => v.Name.ToLower() == version.Name.ToLower() && v.VersionID != version.VersionID);
             if (existing != null)
             {
